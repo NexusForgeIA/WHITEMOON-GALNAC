@@ -40,7 +40,7 @@
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
 body{
   background:var(--bg);
   color:var(--text);
@@ -62,12 +62,13 @@ h1,h2,h3,.display{font-family:var(--display);font-weight:800;line-height:.95;let
 
 /* ============ NAV ============ */
 header.nav{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s}
-header.nav::after{content:"";position:absolute;inset:0;border-bottom:1px solid transparent;transition:border-color .4s}
+header.nav::after{content:"";position:absolute;inset:0;border-bottom:1px solid transparent;transition:border-color .4s;pointer-events:none}
 header.nav.scrolled{background:rgba(8,10,14,.82);backdrop-filter:blur(14px)}
 header.nav.scrolled::after{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px}
 .nav-logo{display:flex;align-items:center;gap:13px}
-.nav-logo .logo-img{display:block;height:32px;width:auto;flex-shrink:0}
+.nav-logo .logo-img{display:block;height:40px;width:auto;flex-shrink:0;filter:brightness(0) saturate(100%) invert(72%) sepia(58%) saturate(1400%) hue-rotate(353deg) brightness(99%) contrast(95%)}
+.nav-logo .logo-fallback{display:none;color:var(--p);font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:.1em;line-height:1}
 .nav-logo .sep{width:1px;height:26px;background:var(--line)}
 .nav-logo small{font-family:var(--display);font-weight:600;letter-spacing:.18em;font-size:.62rem;color:var(--muted);text-transform:uppercase;line-height:1.3}
 .nav-links{display:flex;align-items:center;gap:34px}
@@ -88,7 +89,7 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 .mobile-menu a:hover{color:var(--p)}
 
 /* ============ HERO ============ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-top:140px;padding-bottom:54px;overflow:hidden}
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-bottom:54px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg .grad{position:absolute;inset:0;background:
   radial-gradient(1100px 600px at 78% 18%,rgba(245,166,35,.16),transparent 60%),
@@ -109,8 +110,8 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 .hero-bg .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(0,0,0,.75) 0%,rgba(10,13,18,.85) 100%)}
 
 .hero-ghost{position:absolute;right:-2vw;top:6vh;font-family:var(--display);font-weight:800;font-size:clamp(13rem,30vw,32rem);line-height:.8;color:#fff;opacity:.035;z-index:1;pointer-events:none;letter-spacing:-.04em}
-.hero-content{position:relative;z-index:3;width:100%}
-.hero h1{font-size:clamp(2.5rem,6vw,5rem);margin-bottom:6px}
+.hero-content{position:relative;z-index:3;width:100%;padding-top:140px}
+.hero h1{font-size:clamp(2.2rem,5.5vw,4.5rem);margin-bottom:6px}
 .hero h1 .since{display:block;color:var(--p);-webkit-text-fill-color:var(--p)}
 .hero h1 .ml{display:inline-block}
 .hero-rot{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.1rem,3vw,1.9rem);color:var(--muted);margin-top:22px;display:flex;align-items:baseline;gap:.5em;flex-wrap:wrap}
@@ -158,15 +159,18 @@ section{position:relative}
 .partner::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 80% 0%,rgba(245,166,35,.1),transparent 70%);opacity:0;transition:opacity .4s}
 .partner:hover{border-color:var(--border);transform:translateY(-6px)}
 .partner:hover::after{opacity:1}
-.partner-logo{height:54px;display:flex;align-items:center}
-.partner-logo img{max-height:52px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.92}
+.partner-logo{min-height:54px;display:flex;align-items:center}
+.partner-wm{display:inline-flex;align-items:center;font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:var(--text);font-size:1.4rem;line-height:1;border:1px solid var(--line);border-radius:7px;padding:13px 22px;transition:border-color .35s,color .35s}
+.partner:hover .partner-wm{border-color:var(--border)}
 .partner h3{font-size:1.5rem;font-weight:700;letter-spacing:.01em}
 .partner p{color:var(--muted);font-size:.93rem;flex:1}
 .partner .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--p);position:relative;z-index:2}
 .partner .go svg{transition:transform .3s}
 .partner:hover .go svg{transform:translate(4px,-4px)}
 .cert-strip{display:flex;align-items:center;gap:22px;margin-top:30px;padding:22px 28px;border:1px dashed var(--border);border-radius:10px;background:rgba(245,166,35,.03)}
-.cert-strip img{height:60px;width:auto;background:#fff;padding:6px;border-radius:6px}
+.cert-badge{display:flex;flex-direction:column;gap:5px;align-items:center;text-align:center;border:1px solid var(--border);border-radius:9px;padding:14px 24px;flex-shrink:0}
+.cert-badge .cb-iso{font-family:var(--display);font-weight:800;font-size:1.5rem;line-height:1;color:var(--p);letter-spacing:.04em}
+.cert-badge .cb-bv{font-size:.7rem;color:var(--text);letter-spacing:.16em;text-transform:uppercase}
 .cert-strip p{color:var(--muted);font-size:.95rem}
 .cert-strip strong{color:var(--text)}
 
@@ -204,12 +208,11 @@ section{position:relative}
 
 /* MAPA SVG */
 .map-svg{width:100%;height:auto;display:block}
-.map-svg .land{fill:rgba(245,166,35,.05);stroke:rgba(245,166,35,.28);stroke-width:1.4}
+.map-svg .land{fill:rgba(245,166,35,.04);stroke:#f5a623;stroke-opacity:.3;stroke-width:1.6}
 .map-svg .pt{fill:var(--p)}
 .map-svg .pt-ring{fill:none;stroke:var(--p);stroke-width:1.5;opacity:.5;transform-box:fill-box;transform-origin:center;animation:ptpulse 2.6s ease-out infinite}
-@keyframes ptpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.6);opacity:0}}
-.map-svg .lbl{fill:#fff;font-family:var(--body);font-size:13px;font-weight:500;paint-order:stroke;stroke:rgba(8,10,14,.65);stroke-width:3px}
-.map-svg .lbl.pt-sm{font-size:11px}
+@keyframes ptpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.4);opacity:0}}
+.map-svg .lbl{fill:#fff;font-family:var(--body);font-size:12px;font-weight:500;paint-order:stroke;stroke:rgba(8,10,14,.7);stroke-width:3px}
 
 /* CALIDAD */
 .calidad{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -315,7 +318,8 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   .partners-grid,.dist-cols{grid-template-columns:1fr 1fr}
   .hero-stats{grid-template-columns:1fr 1fr}
   .contact-info{grid-template-columns:1fr 1fr}
-  .hero{padding-top:100px;padding-bottom:40px}
+  .hero{padding-bottom:40px}
+  .hero-content{padding-top:110px}
   .scroll-cue{display:none}
 }
 @media(max-width:768px){
@@ -324,7 +328,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 @media(max-width:600px){
   .wrap{padding:0 18px}
   .partners-grid,.dist-cols,.contact-info{grid-template-columns:1fr}
-  .hero h1{font-size:clamp(2.8rem,15vw,4rem)}
+  .hero-content{padding-top:90px}
   .dept .ds{display:none}
   .org-children{grid-template-columns:1fr 1fr}
   .org-connect{display:none}
@@ -348,7 +352,8 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="nav-logo" aria-label="GALNAC inicio">
-      <img class="logo-img" src="assets/logo-orange.png" alt="Galnac" />
+      <img class="logo-img" src="https://galnac.com/wp-content/uploads/2021/06/logo_web.png" alt="Galnac" height="40" onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'" />
+      <span class="logo-fallback">GALNAC</span>
       <span class="sep"></span>
       <small>Maquinaria<br>Industrial</small>
     </a>
@@ -456,26 +461,23 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
     </div>
     <div class="partners-grid">
       <a class="partner reveal" href="http://doofor.com" target="_blank" rel="noopener" data-cursor>
-        <div class="partner-logo"><img src="https://galnac.com/wp-content/uploads/2021/08/logo-doofor.png" alt="Doofor" loading="lazy" /></div>
-        <h3>Doofor</h3>
+        <div class="partner-logo"><span class="partner-wm">Doofor</span></div>
         <p>Perforadoras hidráulicas y componentes de perforación de precisión para sondeo y geotecnia.</p>
         <span class="go">Visitar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
       </a>
       <a class="partner reveal" href="http://epiroc.com/es-es" target="_blank" rel="noopener" data-cursor>
-        <div class="partner-logo"><img src="https://galnac.com/wp-content/uploads/2021/08/epiroc.jpeg" alt="Epiroc" loading="lazy" /></div>
-        <h3>Epiroc</h3>
+        <div class="partner-logo"><span class="partner-wm">Epiroc</span></div>
         <p>Compresores, equipos de perforación y martillos de fondo para minería y obra pública.</p>
         <span class="go">Visitar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
       </a>
       <a class="partner reveal" href="http://atlascopco.com/es-es" target="_blank" rel="noopener" data-cursor>
-        <div class="partner-logo"><img src="https://galnac.com/wp-content/uploads/2021/08/logo-atlas.png" alt="Atlas Copco" loading="lazy" /></div>
-        <h3>Atlas Copco</h3>
+        <div class="partner-logo"><span class="partner-wm">Atlas Copco</span></div>
         <p>Compresores de tornillo eléctricos, de pistón y portátiles diésel de alto rendimiento.</p>
         <span class="go">Visitar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
       </a>
     </div>
     <div class="cert-strip reveal">
-      <img src="https://galnac.com/wp-content/uploads/2022/05/ISO9001logo-bureu-veritas.jpg" alt="ISO 9001 Bureau Veritas" loading="lazy" />
+      <div class="cert-badge"><span class="cb-iso">ISO 9001</span><span class="cb-bv">Bureau Veritas</span></div>
       <p>Calidad auditada y certificada por <strong>Bureau Veritas</strong> bajo la norma <strong>ISO 9001</strong>, garantía de procesos fiables en venta y postventa.</p>
     </div>
   </div>
@@ -594,17 +596,18 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
       </div>
       <div class="reveal">
         <div class="framed">
-          <svg class="map-svg" viewBox="0 0 550 420" role="img" aria-label="Mapa de la península ibérica con los puntos de distribución de GALNAC">
-            <path class="land" d="M74,88 Q110,76 150,70 Q250,62 340,68 Q400,72 420,82 Q445,96 452,108 Q468,130 470,150 Q470,180 468,195 Q462,222 448,235 Q420,272 398,285 Q365,302 360,305 Q320,320 290,322 Q245,326 210,330 Q188,338 175,345 Q160,335 148,318 Q128,300 112,288 Q88,272 74,262 Q66,246 68,230 Q60,205 60,180 Q58,155 58,135 Q60,118 64,108 Q68,96 74,88 Z"/>
+          <svg class="map-svg" viewBox="0 0 600 500" role="img" aria-label="Mapa de la península ibérica con los puntos de distribución de GALNAC">
+            <rect x="0" y="0" width="600" height="500" fill="#0a0d12"/>
+            <path class="land" d="M 150,60 L 280,40 L 420,55 L 510,100 L 530,160 L 500,230 L 460,290 L 380,340 L 300,360 L 220,340 L 150,300 L 90,250 L 70,180 L 100,110 Z"/>
             <!-- puntos de distribución -->
             <g>
-              <circle class="pt-ring" cx="110" cy="95" r="6"/><circle class="pt" cx="110" cy="95" r="5"/><text class="lbl" x="121" y="99">Porriño</text>
-              <circle class="pt-ring" cx="230" cy="130" r="6"/><circle class="pt" cx="230" cy="130" r="5"/><text class="lbl" x="241" y="134">Valladolid</text>
-              <circle class="pt-ring" cx="420" cy="120" r="6"/><circle class="pt" cx="420" cy="120" r="5"/><text class="lbl" x="409" y="124" text-anchor="end">Barcelona</text>
-              <circle class="pt-ring" cx="160" cy="310" r="6"/><circle class="pt" cx="160" cy="310" r="5"/><text class="lbl" x="171" y="314">Sevilla</text>
-              <circle class="pt-ring" cx="90" cy="140" r="6"/><circle class="pt" cx="90" cy="140" r="5"/><text class="lbl pt-sm" x="101" y="144">Vila Verde</text>
-              <circle class="pt-ring" cx="100" cy="215" r="6"/><circle class="pt" cx="100" cy="215" r="5"/><text class="lbl pt-sm" x="111" y="219">Tomar</text>
-              <circle class="pt-ring" cx="85" cy="255" r="6"/><circle class="pt" cx="85" cy="255" r="5"/><text class="lbl pt-sm" x="96" y="259">Arruda dos Vinhos</text>
+              <circle class="pt-ring" cx="155" cy="155" r="8"/><circle class="pt" cx="155" cy="155" r="8"/><text class="lbl" x="170" y="159">Porriño</text>
+              <circle class="pt-ring" cx="250" cy="170" r="8"/><circle class="pt" cx="250" cy="170" r="8"/><text class="lbl" x="265" y="174">Valladolid</text>
+              <circle class="pt-ring" cx="450" cy="130" r="8"/><circle class="pt" cx="450" cy="130" r="8"/><text class="lbl" x="465" y="134">Barcelona</text>
+              <circle class="pt-ring" cx="210" cy="295" r="8"/><circle class="pt" cx="210" cy="295" r="8"/><text class="lbl" x="225" y="299">Sevilla</text>
+              <circle class="pt-ring" cx="120" cy="175" r="8"/><circle class="pt" cx="120" cy="175" r="8"/><text class="lbl" x="135" y="179">Vila Verde</text>
+              <circle class="pt-ring" cx="115" cy="230" r="8"/><circle class="pt" cx="115" cy="230" r="8"/><text class="lbl" x="130" y="234">Tomar</text>
+              <circle class="pt-ring" cx="105" cy="265" r="8"/><circle class="pt" cx="105" cy="265" r="8"/><text class="lbl" x="120" y="269">Arruda dos Vinhos</text>
             </g>
           </svg>
         </div>
