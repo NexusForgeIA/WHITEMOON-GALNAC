@@ -67,8 +67,7 @@ header.nav.scrolled{background:rgba(8,10,14,.82);backdrop-filter:blur(14px)}
 header.nav.scrolled::after{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px}
 .nav-logo{display:flex;align-items:center;gap:13px}
-.nav-logo .logo-mark{width:28px;height:28px;color:var(--p);flex-shrink:0}
-.nav-logo .logo-word{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:.06em;color:var(--p);text-transform:uppercase;line-height:1}
+.nav-logo .logo-img{display:block;height:32px;width:auto;flex-shrink:0}
 .nav-logo .sep{width:1px;height:26px;background:var(--line)}
 .nav-logo small{font-family:var(--display);font-weight:600;letter-spacing:.18em;font-size:.62rem;color:var(--muted);text-transform:uppercase;line-height:1.3}
 .nav-links{display:flex;align-items:center;gap:34px}
@@ -89,7 +88,7 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 .mobile-menu a:hover{color:var(--p)}
 
 /* ============ HERO ============ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-bottom:54px;overflow:hidden}
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-top:140px;padding-bottom:54px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg .grad{position:absolute;inset:0;background:
   radial-gradient(1100px 600px at 78% 18%,rgba(245,166,35,.16),transparent 60%),
@@ -111,7 +110,7 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 
 .hero-ghost{position:absolute;right:-2vw;top:6vh;font-family:var(--display);font-weight:800;font-size:clamp(13rem,30vw,32rem);line-height:.8;color:#fff;opacity:.035;z-index:1;pointer-events:none;letter-spacing:-.04em}
 .hero-content{position:relative;z-index:3;width:100%}
-.hero h1{font-size:clamp(3.4rem,11vw,9.5rem);margin-bottom:6px}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);margin-bottom:6px}
 .hero h1 .since{display:block;color:var(--p);-webkit-text-fill-color:var(--p)}
 .hero h1 .ml{display:inline-block}
 .hero-rot{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.1rem,3vw,1.9rem);color:var(--muted);margin-top:22px;display:flex;align-items:baseline;gap:.5em;flex-wrap:wrap}
@@ -188,7 +187,12 @@ section{position:relative}
 .org-node .ic svg{width:24px;height:24px}
 .org-node .t{font-family:var(--display);font-weight:700;font-size:1.12rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
 .org-node .n{font-size:.74rem;color:var(--muted);letter-spacing:.04em}
-.org-top{max-width:240px;margin:0 auto}
+.org-node .person{font-weight:600;font-size:.86rem;color:var(--text);margin-top:-2px}
+.org-node .count{font-family:var(--display);font-weight:700;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--p)}
+.org-node .meta{font-size:.72rem;color:var(--muted);line-height:1.6;word-break:break-word}
+.org-node .meta a{color:var(--muted);transition:color .2s}
+.org-node .meta a:hover{color:var(--p)}
+.org-top{max-width:320px;margin:0 auto}
 .org-top .ic{border-color:var(--g);background:rgba(0,212,170,.1);color:var(--g);width:54px;height:54px}
 .org-top .ic svg{width:28px;height:28px}
 .org-top .t{font-size:1.3rem}
@@ -204,8 +208,8 @@ section{position:relative}
 .map-svg .pt{fill:var(--p)}
 .map-svg .pt-ring{fill:none;stroke:var(--p);stroke-width:1.5;opacity:.5;transform-box:fill-box;transform-origin:center;animation:ptpulse 2.6s ease-out infinite}
 @keyframes ptpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.6);opacity:0}}
-.map-svg .lbl{fill:var(--text);font-family:var(--body);font-size:13px;font-weight:500}
-.map-svg .lbl.pt-sm{font-size:11px;fill:var(--muted)}
+.map-svg .lbl{fill:#fff;font-family:var(--body);font-size:13px;font-weight:500;paint-order:stroke;stroke:rgba(8,10,14,.65);stroke-width:3px}
+.map-svg .lbl.pt-sm{font-size:11px}
 
 /* CALIDAD */
 .calidad{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -311,7 +315,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   .partners-grid,.dist-cols{grid-template-columns:1fr 1fr}
   .hero-stats{grid-template-columns:1fr 1fr}
   .contact-info{grid-template-columns:1fr 1fr}
-  .hero{padding-bottom:40px}
+  .hero{padding-top:100px;padding-bottom:40px}
   .scroll-cue{display:none}
 }
 @media(max-width:768px){
@@ -344,8 +348,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="nav-logo" aria-label="GALNAC inicio">
-      <svg class="logo-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 13.6 1h-3.2c-.24 0-.44.17-.48.41l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.48.41h3.2c.24 0 .44-.17.48-.41l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5z"/></svg>
-      <span class="logo-word">GALNAC</span>
+      <img class="logo-img" src="assets/logo-orange.png" alt="Galnac" />
       <span class="sep"></span>
       <small>Maquinaria<br>Industrial</small>
     </a>
@@ -492,29 +495,33 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
           <div class="org-node org-top">
             <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
             <div class="t">Dirección</div>
-            <div class="n">Estrategia y relación con clientes</div>
+            <div class="person">Carlos González</div>
+            <div class="meta"><a href="tel:+34619789518">+34 619 789 518</a><br><a href="mailto:carlos.gonzalez@galnac.com">carlos.gonzalez@galnac.com</a></div>
           </div>
           <div class="org-connect"></div>
           <div class="org-children">
             <div class="org-node">
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v5.5L4.2 17a2 2 0 0 0 1.8 3h12a2 2 0 0 0 1.8-3L15 8.5V3"/><path d="M7.5 3h9"/></svg></div>
               <div class="t">I+D+i</div>
-              <div class="n">Innovación técnica</div>
+              <div class="count">1 persona</div>
+            </div>
+            <div class="org-node">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+              <div class="t">Administración<br>y logística</div>
+              <div class="count">3 personas</div>
+              <div class="meta"><a href="tel:+34986349377">+34 986 349 377</a><br><a href="mailto:info@galnac.com">info@galnac.com</a><br><a href="mailto:almacen@galnac.com">almacen@galnac.com</a></div>
             </div>
             <div class="org-node">
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
               <div class="t">Ventas</div>
-              <div class="n">Asesoramiento comercial</div>
-            </div>
-            <div class="org-node">
-              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
-              <div class="t">Administración</div>
-              <div class="n">Gestión y logística</div>
+              <div class="count">1 persona</div>
+              <div class="meta"><a href="tel:+34607813342">+34 607 813 342</a><br><a href="mailto:comercial@galnac.com">comercial@galnac.com</a></div>
             </div>
             <div class="org-node">
               <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
               <div class="t">Servicio Postventa</div>
-              <div class="n">Reparación y asistencia</div>
+              <div class="count">6 personas</div>
+              <div class="meta"><a href="tel:+34661508692">+34 661 508 692</a><br><a href="mailto:luis.martinez@galnac.com">luis.martinez@galnac.com</a></div>
             </div>
           </div>
         </div>
@@ -587,17 +594,17 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
       </div>
       <div class="reveal">
         <div class="framed">
-          <svg class="map-svg" viewBox="0 0 560 470" role="img" aria-label="Mapa de la península ibérica con los puntos de distribución de GALNAC">
-            <path class="land" d="M70,62 L150,52 L250,50 L330,54 L405,70 L440,96 L468,150 L470,195 L440,250 L388,305 L350,332 L290,350 L235,356 L195,372 L160,352 L120,322 L82,278 L60,210 L56,150 L60,100 Z"/>
-            <!-- points -->
+          <svg class="map-svg" viewBox="0 0 550 420" role="img" aria-label="Mapa de la península ibérica con los puntos de distribución de GALNAC">
+            <path class="land" d="M74,88 Q110,76 150,70 Q250,62 340,68 Q400,72 420,82 Q445,96 452,108 Q468,130 470,150 Q470,180 468,195 Q462,222 448,235 Q420,272 398,285 Q365,302 360,305 Q320,320 290,322 Q245,326 210,330 Q188,338 175,345 Q160,335 148,318 Q128,300 112,288 Q88,272 74,262 Q66,246 68,230 Q60,205 60,180 Q58,155 58,135 Q60,118 64,108 Q68,96 74,88 Z"/>
+            <!-- puntos de distribución -->
             <g>
-              <circle class="pt-ring" cx="92" cy="74" r="6"/><circle class="pt" cx="92" cy="74" r="5"/><text class="lbl" x="103" y="78">Porriño</text>
-              <circle class="pt-ring" cx="84" cy="112" r="6"/><circle class="pt" cx="84" cy="112" r="5"/><text class="lbl pt-sm" x="95" y="116">Vila Verde</text>
-              <circle class="pt-ring" cx="232" cy="128" r="6"/><circle class="pt" cx="232" cy="128" r="5"/><text class="lbl" x="243" y="132">Valladolid</text>
-              <circle class="pt-ring" cx="430" cy="120" r="6"/><circle class="pt" cx="430" cy="120" r="5"/><text class="lbl" x="419" y="124" text-anchor="end">Barcelona</text>
-              <circle class="pt-ring" cx="96" cy="232" r="6"/><circle class="pt" cx="96" cy="232" r="5"/><text class="lbl pt-sm" x="107" y="236">Tomar</text>
-              <circle class="pt-ring" cx="78" cy="280" r="6"/><circle class="pt" cx="78" cy="280" r="5"/><text class="lbl pt-sm" x="89" y="290">Arruda dos Vinhos</text>
-              <circle class="pt-ring" cx="192" cy="334" r="6"/><circle class="pt" cx="192" cy="334" r="5"/><text class="lbl" x="203" y="338">Sevilla</text>
+              <circle class="pt-ring" cx="110" cy="95" r="6"/><circle class="pt" cx="110" cy="95" r="5"/><text class="lbl" x="121" y="99">Porriño</text>
+              <circle class="pt-ring" cx="230" cy="130" r="6"/><circle class="pt" cx="230" cy="130" r="5"/><text class="lbl" x="241" y="134">Valladolid</text>
+              <circle class="pt-ring" cx="420" cy="120" r="6"/><circle class="pt" cx="420" cy="120" r="5"/><text class="lbl" x="409" y="124" text-anchor="end">Barcelona</text>
+              <circle class="pt-ring" cx="160" cy="310" r="6"/><circle class="pt" cx="160" cy="310" r="5"/><text class="lbl" x="171" y="314">Sevilla</text>
+              <circle class="pt-ring" cx="90" cy="140" r="6"/><circle class="pt" cx="90" cy="140" r="5"/><text class="lbl pt-sm" x="101" y="144">Vila Verde</text>
+              <circle class="pt-ring" cx="100" cy="215" r="6"/><circle class="pt" cx="100" cy="215" r="5"/><text class="lbl pt-sm" x="111" y="219">Tomar</text>
+              <circle class="pt-ring" cx="85" cy="255" r="6"/><circle class="pt" cx="85" cy="255" r="5"/><text class="lbl pt-sm" x="96" y="259">Arruda dos Vinhos</text>
             </g>
           </svg>
         </div>
