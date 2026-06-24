@@ -71,7 +71,7 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 .nav-logo .logo-fallback{display:none;color:var(--p);font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:.1em;line-height:1}
 .nav-logo .sep{width:1px;height:26px;background:var(--line)}
 .nav-logo small{font-family:var(--display);font-weight:600;letter-spacing:.18em;font-size:.62rem;color:var(--muted);text-transform:uppercase;line-height:1.3}
-.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links{display:flex;align-items:center;gap:26px}
 .nav-links a{font-size:.83rem;font-weight:500;color:var(--muted);position:relative;transition:color .25s}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:var(--p);transition:width .3s ease}
 .nav-links a:hover{color:var(--text)}
@@ -214,6 +214,25 @@ section{position:relative}
 @keyframes ptpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.4);opacity:0}}
 .map-svg .lbl{fill:#fff;font-family:var(--body);font-size:12px;font-weight:500;paint-order:stroke;stroke:rgba(8,10,14,.7);stroke-width:3px}
 
+/* IMÁGENES REALES */
+.equipo-intro{max-width:780px;color:#aeb6c4;font-size:1.06rem;margin:0 0 44px}
+.equipo-intro strong{color:var(--text);font-weight:600}
+.org-img{box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
+.dist-map-img{width:100%;max-width:900px;display:block;margin:0 auto;border-radius:12px;border:1px solid var(--line)}
+
+/* PRODUCTOS */
+.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:6px}
+.prod-card{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:border-color .35s,transform .35s}
+.prod-card:hover{border-color:var(--border);transform:translateY(-5px)}
+.prod-img{height:320px;overflow:hidden;position:relative}
+.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.prod-card:hover .prod-img img{transform:scale(1.06)}
+.prod-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,25,32,.65))}
+.prod-body{padding:28px 32px 32px}
+.prod-tag{display:inline-block;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--p);border:1px solid var(--border);border-radius:100px;padding:5px 14px;margin-bottom:15px}
+.prod-body h3{font-size:1.5rem;font-weight:700;letter-spacing:.01em}
+.prod-body p{color:var(--muted);font-size:.96rem;margin-top:12px}
+
 /* CALIDAD */
 .calidad{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .calidad-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
@@ -316,6 +335,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   .historia-grid,.equipo-grid,.calidad-grid,.dist-top,.contact-grid{grid-template-columns:1fr;gap:46px}
   .equipo-grid .equipo-media{order:-1}
   .partners-grid,.dist-cols{grid-template-columns:1fr 1fr}
+  .prod-grid{grid-template-columns:1fr}
   .hero-stats{grid-template-columns:1fr 1fr}
   .contact-info{grid-template-columns:1fr 1fr}
   .hero{padding-bottom:40px}
@@ -360,6 +380,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
     <nav class="nav-links">
       <a href="#top">Inicio</a>
       <a href="#historia">Historia</a>
+      <a href="#productos">Productos</a>
       <a href="#partners">Partners</a>
       <a href="#equipo">Equipo</a>
       <a href="#calidad">Calidad</a>
@@ -375,6 +396,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 <div class="mobile-menu" id="mobileMenu">
   <a href="#top">Inicio</a>
   <a href="#historia">Historia</a>
+  <a href="#productos">Productos</a>
   <a href="#partners">Partners</a>
   <a href="#equipo">Equipo</a>
   <a href="#calidad">Calidad</a>
@@ -442,7 +464,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
       </div>
       <div class="historia-media reveal">
         <div class="framed" data-cursor>
-          <img src="https://galnac.com/wp-content/uploads/2021/08/linea-tiempo.png" alt="Línea de tiempo de GALNAC S.L." loading="lazy" />
+          <img src="assets/historia.jpeg" alt="Historia GALNAC desde 1996" loading="lazy" />
         </div>
         <div class="tag-1996"><span>Fundación</span>1996</div>
       </div>
@@ -450,9 +472,38 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   </div>
 </section>
 
+<!-- ============ PRODUCTOS ============ -->
+<section class="sec" id="productos">
+  <span class="bignum" style="right:-2vw;top:20px">02</span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Qué ofrecemos</span>
+      <h2>Maquinaria y servicio<br>técnico especializado</h2>
+    </div>
+    <div class="prod-grid">
+      <article class="prod-card reveal">
+        <div class="prod-img"><img src="assets/compresor.jpeg" alt="Compresor Galnac GLC 15 VSD" loading="lazy" /></div>
+        <div class="prod-body">
+          <span class="prod-tag">Compresores</span>
+          <h3>Compresores eléctricos y diésel</h3>
+          <p>Compresores de tornillo, de pistón y portátiles de las marcas Epiroc y Atlas Copco. Venta, repuestos y servicio especializado de reparación de compresores de segunda mano.</p>
+        </div>
+      </article>
+      <article class="prod-card reveal">
+        <div class="prod-img"><img src="assets/maquina-epiroc.jpeg" alt="Maquinaria de perforación Epiroc" loading="lazy" /></div>
+        <div class="prod-body">
+          <span class="prod-tag">Perforación</span>
+          <h3>Maquinaria de perforación</h3>
+          <p>Perforadoras hidráulicas, martillos de fondo de pozo y equipos de sondeo Doofor y Epiroc para minería, obra pública, pozos de agua y geotecnia.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PARTNERS ============ -->
 <section class="sec partners" id="partners">
-  <span class="bignum" style="right:-2vw;top:20px">02</span>
+  <span class="bignum" style="right:-2vw;top:20px">03</span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Partners y marcas</span>
@@ -485,66 +536,20 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 
 <!-- ============ EQUIPO ============ -->
 <section class="sec" id="equipo">
-  <span class="bignum" style="left:-2vw;top:30px">03</span>
+  <span class="bignum" style="left:-2vw;top:30px">04</span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Nuestro equipo</span>
       <h2>Once personas,<br>cinco departamentos</h2>
     </div>
-    <div class="equipo-grid">
-      <div class="equipo-media reveal">
-        <div class="org" role="img" aria-label="Organigrama de GALNAC: Dirección al frente de I+D+i, Ventas, Administración y Servicio Postventa">
-          <div class="org-node org-top">
-            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-            <div class="t">Dirección</div>
-            <div class="person">Carlos González</div>
-            <div class="meta"><a href="tel:+34619789518">+34 619 789 518</a><br><a href="mailto:carlos.gonzalez@galnac.com">carlos.gonzalez@galnac.com</a></div>
-          </div>
-          <div class="org-connect"></div>
-          <div class="org-children">
-            <div class="org-node">
-              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v5.5L4.2 17a2 2 0 0 0 1.8 3h12a2 2 0 0 0 1.8-3L15 8.5V3"/><path d="M7.5 3h9"/></svg></div>
-              <div class="t">I+D+i</div>
-              <div class="count">1 persona</div>
-            </div>
-            <div class="org-node">
-              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
-              <div class="t">Administración<br>y logística</div>
-              <div class="count">3 personas</div>
-              <div class="meta"><a href="tel:+34986349377">+34 986 349 377</a><br><a href="mailto:info@galnac.com">info@galnac.com</a><br><a href="mailto:almacen@galnac.com">almacen@galnac.com</a></div>
-            </div>
-            <div class="org-node">
-              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
-              <div class="t">Ventas</div>
-              <div class="count">1 persona</div>
-              <div class="meta"><a href="tel:+34607813342">+34 607 813 342</a><br><a href="mailto:comercial@galnac.com">comercial@galnac.com</a></div>
-            </div>
-            <div class="org-node">
-              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
-              <div class="t">Servicio Postventa</div>
-              <div class="count">6 personas</div>
-              <div class="meta"><a href="tel:+34661508692">+34 661 508 692</a><br><a href="mailto:luis.martinez@galnac.com">luis.martinez@galnac.com</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="equipo-copy reveal">
-        <p style="color:#aeb6c4;font-size:1.06rem">Nuestro equipo está conformado por <strong style="color:var(--text)">once personas</strong> que se distribuyen en cinco departamentos, coordinados para ofrecer un servicio técnico ágil y preciso.</p>
-        <div class="depts">
-          <div class="dept"><span class="no">01</span><span class="nm">Dirección</span><span class="ds">Estrategia y relación con clientes y proveedores</span></div>
-          <div class="dept"><span class="no">02</span><span class="nm">I+D+i</span><span class="ds">Innovación y desarrollo de soluciones técnicas</span></div>
-          <div class="dept"><span class="no">03</span><span class="nm">Ventas</span><span class="ds">Asesoramiento y comercialización de maquinaria</span></div>
-          <div class="dept"><span class="no">04</span><span class="nm">Administración</span><span class="ds">Gestión, logística y atención al cliente</span></div>
-          <div class="dept"><span class="no">05</span><span class="nm">Posventa y asistencia</span><span class="ds">Servicio técnico, reparación y repuestos</span></div>
-        </div>
-      </div>
-    </div>
+    <p class="equipo-intro reveal">Nuestro equipo está conformado por <strong>once personas</strong> que se distribuyen en cinco departamentos: Dirección, I+D+i, Ventas, Administración, y Servicio de Posventa y asistencia.</p>
+    <img class="org-img reveal" src="assets/organigrama.png" alt="Organigrama Dirección GALNAC" style="width:100%;max-width:960px;display:block;margin:0 auto;background:#fff;padding:20px;border-radius:12px;box-sizing:border-box" />
   </div>
 </section>
 
 <!-- ============ CALIDAD ============ -->
 <section class="sec calidad" id="calidad">
-  <span class="bignum" style="right:-2vw;top:20px">04</span>
+  <span class="bignum" style="right:-2vw;top:20px">05</span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Calidad certificada</span>
@@ -577,7 +582,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 
 <!-- ============ DISTRIBUIDORES ============ -->
 <section class="sec" id="distribuidores">
-  <span class="bignum" style="left:-2vw;top:20px">05</span>
+  <span class="bignum" style="left:-2vw;top:20px">06</span>
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Red de distribución</span>
@@ -595,22 +600,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
         </div>
       </div>
       <div class="reveal">
-        <div class="framed">
-          <svg class="map-svg" viewBox="0 0 600 500" role="img" aria-label="Mapa de la península ibérica con los puntos de distribución de GALNAC">
-            <rect x="0" y="0" width="600" height="500" fill="#0a0d12"/>
-            <path class="land" d="M 150,60 L 280,40 L 420,55 L 510,100 L 530,160 L 500,230 L 460,290 L 380,340 L 300,360 L 220,340 L 150,300 L 90,250 L 70,180 L 100,110 Z"/>
-            <!-- puntos de distribución -->
-            <g>
-              <circle class="pt-ring" cx="155" cy="155" r="8"/><circle class="pt" cx="155" cy="155" r="8"/><text class="lbl" x="170" y="159">Porriño</text>
-              <circle class="pt-ring" cx="250" cy="170" r="8"/><circle class="pt" cx="250" cy="170" r="8"/><text class="lbl" x="265" y="174">Valladolid</text>
-              <circle class="pt-ring" cx="450" cy="130" r="8"/><circle class="pt" cx="450" cy="130" r="8"/><text class="lbl" x="465" y="134">Barcelona</text>
-              <circle class="pt-ring" cx="210" cy="295" r="8"/><circle class="pt" cx="210" cy="295" r="8"/><text class="lbl" x="225" y="299">Sevilla</text>
-              <circle class="pt-ring" cx="120" cy="175" r="8"/><circle class="pt" cx="120" cy="175" r="8"/><text class="lbl" x="135" y="179">Vila Verde</text>
-              <circle class="pt-ring" cx="115" cy="230" r="8"/><circle class="pt" cx="115" cy="230" r="8"/><text class="lbl" x="130" y="234">Tomar</text>
-              <circle class="pt-ring" cx="105" cy="265" r="8"/><circle class="pt" cx="105" cy="265" r="8"/><text class="lbl" x="120" y="269">Arruda dos Vinhos</text>
-            </g>
-          </svg>
-        </div>
+        <img class="dist-map-img" src="assets/mapa-distribucion.jpeg" alt="Red de distribuidores GALNAC en la península ibérica" loading="lazy" />
       </div>
     </div>
 
