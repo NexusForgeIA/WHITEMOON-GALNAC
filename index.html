@@ -60,21 +60,15 @@ h1,h2,h3,.display{font-family:var(--display);font-weight:800;line-height:.95;let
 .eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.28em;font-size:.78rem;color:var(--p);display:inline-flex;align-items:center;gap:.7em}
 .eyebrow::before{content:"";width:34px;height:1px;background:var(--p);display:inline-block;opacity:.7}
 
-/* ============ CUSTOM CURSOR ============ */
-.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:normal;will-change:transform}
-.cursor-dot{width:6px;height:6px;background:var(--p);margin:-3px 0 0 -3px}
-.cursor-ring{width:38px;height:38px;border:1.5px solid rgba(245,166,35,.55);margin:-19px 0 0 -19px;transition:width .25s ease,height .25s ease,border-color .25s ease,background .25s ease}
-.cursor-ring.hover{width:60px;height:60px;border-color:rgba(245,166,35,.9);background:rgba(245,166,35,.08)}
-@media (hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
-
 /* ============ NAV ============ */
 header.nav{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s}
 header.nav::after{content:"";position:absolute;inset:0;border-bottom:1px solid transparent;transition:border-color .4s}
 header.nav.scrolled{background:rgba(8,10,14,.82);backdrop-filter:blur(14px)}
 header.nav.scrolled::after{border-bottom-color:var(--line)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px}
-.nav-logo{display:flex;align-items:center;gap:14px}
-.nav-logo img{height:38px;width:auto;filter:brightness(0) invert(1)}
+.nav-logo{display:flex;align-items:center;gap:13px}
+.nav-logo .logo-mark{width:28px;height:28px;color:var(--p);flex-shrink:0}
+.nav-logo .logo-word{font-family:var(--display);font-weight:800;font-size:1.6rem;letter-spacing:.06em;color:var(--p);text-transform:uppercase;line-height:1}
 .nav-logo .sep{width:1px;height:26px;background:var(--line)}
 .nav-logo small{font-family:var(--display);font-weight:600;letter-spacing:.18em;font-size:.62rem;color:var(--muted);text-transform:uppercase;line-height:1.3}
 .nav-links{display:flex;align-items:center;gap:34px}
@@ -114,9 +108,6 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 
 .hero-ghost{position:absolute;right:-2vw;top:6vh;font-family:var(--display);font-weight:800;font-size:clamp(13rem,30vw,32rem);line-height:.8;color:#fff;opacity:.035;z-index:1;pointer-events:none;letter-spacing:-.04em}
 .hero-content{position:relative;z-index:3;width:100%}
-.hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);background:rgba(245,166,35,.06);padding:8px 16px;border-radius:100px;font-size:.78rem;font-weight:500;color:var(--p2);margin-bottom:30px}
-.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--p);box-shadow:0 0 0 0 rgba(245,166,35,.6);animation:pulse 2.4s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,166,35,.5)}70%{box-shadow:0 0 0 9px rgba(245,166,35,0)}100%{box-shadow:0 0 0 0 rgba(245,166,35,0)}}
 .hero h1{font-size:clamp(3.4rem,11vw,9.5rem);margin-bottom:6px}
 .hero h1 .since{display:block;color:var(--p);-webkit-text-fill-color:var(--p)}
 .hero h1 .ml{display:inline-block}
@@ -185,6 +176,33 @@ section{position:relative}
 .dept .no{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--p);min-width:48px}
 .dept .nm{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
 .dept .ds{color:var(--muted);font-size:.88rem;margin-left:auto;text-align:right;max-width:48%}
+
+/* ORGANIGRAMA (HTML/CSS) */
+.org{position:relative;padding:8px 4px 4px}
+.org-node{display:flex;flex-direction:column;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:20px 18px;text-align:center;position:relative;transition:border-color .3s,transform .3s}
+.org-node:hover{transform:translateY(-3px)}
+.org-node .ic{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(245,166,35,.1);border:1.5px solid var(--p);color:var(--p)}
+.org-node .ic svg{width:24px;height:24px}
+.org-node .t{font-family:var(--display);font-weight:700;font-size:1.12rem;text-transform:uppercase;letter-spacing:.02em;line-height:1.05}
+.org-node .n{font-size:.74rem;color:var(--muted);letter-spacing:.04em}
+.org-top{max-width:240px;margin:0 auto}
+.org-top .ic{border-color:var(--g);background:rgba(0,212,170,.1);color:var(--g);width:54px;height:54px}
+.org-top .ic svg{width:28px;height:28px}
+.org-top .t{font-size:1.3rem}
+.org-connect{height:34px;position:relative;margin:0 auto;width:75%}
+.org-connect::before{content:"";position:absolute;top:0;left:50%;width:2px;height:17px;background:var(--border);transform:translateX(-50%)}
+.org-connect::after{content:"";position:absolute;top:17px;left:12.5%;right:12.5%;height:2px;background:var(--border)}
+.org-children{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
+.org-children .org-node::before{content:"";position:absolute;top:-17px;left:50%;width:2px;height:17px;background:var(--border);transform:translateX(-50%)}
+
+/* MAPA SVG */
+.map-svg{width:100%;height:auto;display:block}
+.map-svg .land{fill:rgba(245,166,35,.05);stroke:rgba(245,166,35,.28);stroke-width:1.4}
+.map-svg .pt{fill:var(--p)}
+.map-svg .pt-ring{fill:none;stroke:var(--p);stroke-width:1.5;opacity:.5;transform-box:fill-box;transform-origin:center;animation:ptpulse 2.6s ease-out infinite}
+@keyframes ptpulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(2.6);opacity:0}}
+.map-svg .lbl{fill:var(--text);font-family:var(--body);font-size:13px;font-weight:500}
+.map-svg .lbl.pt-sm{font-size:11px;fill:var(--muted)}
 
 /* CALIDAD */
 .calidad{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -298,6 +316,9 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   .partners-grid,.dist-cols,.contact-info{grid-template-columns:1fr}
   .hero h1{font-size:clamp(2.8rem,15vw,4rem)}
   .dept .ds{display:none}
+  .org-children{grid-template-columns:1fr 1fr}
+  .org-connect{display:none}
+  .org-children .org-node::before{display:none}
   .tag-1996{left:50%;transform:translateX(-50%);bottom:-20px}
   .cert-strip{flex-direction:column;text-align:center}
   .iso-badge{flex-direction:column;text-align:center}
@@ -312,14 +333,12 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 </head>
 <body>
 
-<div class="cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="#top" class="nav-logo" aria-label="GALNAC inicio">
-      <img src="https://galnac.com/wp-content/uploads/2021/06/logo_web.png" alt="GALNAC" />
+      <svg class="logo-mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 13.6 1h-3.2c-.24 0-.44.17-.48.41l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.48.41h3.2c.24 0 .44-.17.48-.41l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5z"/></svg>
+      <span class="logo-word">GALNAC</span>
       <span class="sep"></span>
       <small>Maquinaria<br>Industrial</small>
     </a>
@@ -360,7 +379,6 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   <div class="hero-ghost" aria-hidden="true">1996</div>
 
   <div class="wrap hero-content">
-    <span class="hero-badge"><span class="dot"></span>GALNAC S.L. · ISO 9001 certificado</span>
     <h1>
       <span class="ml">Maquinaria</span><br>
       <span class="ml">Industrial</span>
@@ -459,8 +477,35 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
     </div>
     <div class="equipo-grid">
       <div class="equipo-media reveal">
-        <div class="framed" data-cursor>
-          <img src="https://galnac.com/wp-content/uploads/2021/08/jerarquia.png" alt="Organigrama y jerarquía de GALNAC S.L." loading="lazy" />
+        <div class="org" role="img" aria-label="Organigrama de GALNAC: Dirección al frente de I+D+i, Ventas, Administración y Servicio Postventa">
+          <div class="org-node org-top">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+            <div class="t">Dirección</div>
+            <div class="n">Estrategia y relación con clientes</div>
+          </div>
+          <div class="org-connect"></div>
+          <div class="org-children">
+            <div class="org-node">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v5.5L4.2 17a2 2 0 0 0 1.8 3h12a2 2 0 0 0 1.8-3L15 8.5V3"/><path d="M7.5 3h9"/></svg></div>
+              <div class="t">I+D+i</div>
+              <div class="n">Innovación técnica</div>
+            </div>
+            <div class="org-node">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L23 6H6"/></svg></div>
+              <div class="t">Ventas</div>
+              <div class="n">Asesoramiento comercial</div>
+            </div>
+            <div class="org-node">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+              <div class="t">Administración</div>
+              <div class="n">Gestión y logística</div>
+            </div>
+            <div class="org-node">
+              <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg></div>
+              <div class="t">Servicio Postventa</div>
+              <div class="n">Reparación y asistencia</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="equipo-copy reveal">
@@ -530,8 +575,20 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
         </div>
       </div>
       <div class="reveal">
-        <div class="framed" data-cursor>
-          <img src="https://galnac.com/wp-content/uploads/2021/08/mapa-1.png" alt="Mapa de distribuidores GALNAC" loading="lazy" />
+        <div class="framed">
+          <svg class="map-svg" viewBox="0 0 560 470" role="img" aria-label="Mapa de la península ibérica con los puntos de distribución de GALNAC">
+            <path class="land" d="M70,62 L150,52 L250,50 L330,54 L405,70 L440,96 L468,150 L470,195 L440,250 L388,305 L350,332 L290,350 L235,356 L195,372 L160,352 L120,322 L82,278 L60,210 L56,150 L60,100 Z"/>
+            <!-- points -->
+            <g>
+              <circle class="pt-ring" cx="92" cy="74" r="6"/><circle class="pt" cx="92" cy="74" r="5"/><text class="lbl" x="103" y="78">Porriño</text>
+              <circle class="pt-ring" cx="84" cy="112" r="6"/><circle class="pt" cx="84" cy="112" r="5"/><text class="lbl pt-sm" x="95" y="116">Vila Verde</text>
+              <circle class="pt-ring" cx="232" cy="128" r="6"/><circle class="pt" cx="232" cy="128" r="5"/><text class="lbl" x="243" y="132">Valladolid</text>
+              <circle class="pt-ring" cx="430" cy="120" r="6"/><circle class="pt" cx="430" cy="120" r="5"/><text class="lbl" x="419" y="124" text-anchor="end">Barcelona</text>
+              <circle class="pt-ring" cx="96" cy="232" r="6"/><circle class="pt" cx="96" cy="232" r="5"/><text class="lbl pt-sm" x="107" y="236">Tomar</text>
+              <circle class="pt-ring" cx="78" cy="280" r="6"/><circle class="pt" cx="78" cy="280" r="5"/><text class="lbl pt-sm" x="89" y="290">Arruda dos Vinhos</text>
+              <circle class="pt-ring" cx="192" cy="334" r="6"/><circle class="pt" cx="192" cy="334" r="5"/><text class="lbl" x="203" y="338">Sevilla</text>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
@@ -612,8 +669,8 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
       </div>
       <div class="contact-cta reveal">
         <h3>Solicite presupuesto</h3>
-        <p>Cuéntenos qué equipo necesita o qué compresor quiere reparar. Nuestro asistente técnico GALAN recoge los datos y nuestro equipo le contacta en 24 horas.</p>
-        <button class="btn" data-cursor onclick="openChat()">Hablar con GALAN</button>
+        <p>Cuéntenos qué equipo necesita o qué compresor quiere reparar. Nuestro asistente técnico Galnac recoge los datos y nuestro equipo le contacta en 24 horas.</p>
+        <button class="btn" data-cursor onclick="openChat()">Hablar con Galnac</button>
         <a href="tel:+34986349377" class="btn ghost" data-cursor style="border-color:var(--line);color:var(--text)">Llamar ahora</a>
       </div>
     </div>
@@ -628,8 +685,8 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   </div>
 </section>
 
-<!-- ============ CHATBOT GALAN ============ -->
-<button class="fab" id="fab" aria-label="Abrir asistente GALAN" onclick="toggleChat()">
+<!-- ============ CHATBOT Galnac ============ -->
+<button class="fab" id="fab" aria-label="Abrir asistente Galnac" onclick="toggleChat()">
   <span class="ping"></span>
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 13.6 1h-3.2c-.24 0-.44.17-.48.41l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.48.41h3.2c.24 0 .44-.17.48-.41l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5z"/></svg>
 </button>
@@ -639,7 +696,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
     <div class="chat-ava">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 13.6 1h-3.2c-.24 0-.44.17-.48.41l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.48.41h3.2c.24 0 .44-.17.48-.41l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5z"/></svg>
     </div>
-    <div class="hi"><b>GALAN</b><small><i></i>Asistente técnico · GALNAC</small></div>
+    <div class="hi"><b>Galnac</b><small><i></i>Asistente técnico · GALNAC</small></div>
     <button class="chat-x" aria-label="Cerrar" onclick="toggleChat()">×</button>
   </div>
   <div class="chat-body" id="chatBody"></div>
@@ -683,18 +740,6 @@ if (!REDUCED) {
   }, 2400);
 }
 
-/* ---------- CUSTOM CURSOR ---------- */
-const dot = document.querySelector('.cursor-dot');
-const ring = document.querySelector('.cursor-ring');
-if (matchMedia('(pointer:fine)').matches) {
-  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-  addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.transform=`translate(${mx}px,${my}px)`; });
-  (function loop(){ rx+=(mx-rx)*.16; ry+=(my-ry)*.16; ring.style.transform=`translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
-  const hoverSel = 'a,button,[data-cursor],.quick,.chip,.dept';
-  document.addEventListener('mouseover', e => { if (e.target.closest(hoverSel)) ring.classList.add('hover'); });
-  document.addEventListener('mouseout', e => { if (e.target.closest(hoverSel)) ring.classList.remove('hover'); });
-}
-
 /* ---------- COUNT-UP ---------- */
 function countUp(el){
   const target = +el.dataset.count; const dur = 1500; let start = null;
@@ -715,7 +760,6 @@ if (REDUCED || typeof gsap === 'undefined') {
   });
   // hero headline split-in
   gsap.from('.hero h1 .ml, .hero h1 .since', {y:60, opacity:0, duration:1, stagger:.12, ease:'power4.out', delay:.15});
-  gsap.from('.hero-badge', {y:20, opacity:0, duration:.8, delay:.05, ease:'power3.out'});
   // counters — fire immediately if already in view (hero), else on scroll
   document.querySelectorAll('[data-count]').forEach(el => {
     if (el.getBoundingClientRect().top < innerHeight) countUp(el);
@@ -747,7 +791,7 @@ let leadSent = false;
 function toggleChat(){
   const open = chat.classList.toggle('open');
   fab.style.display = open ? 'none' : 'flex';
-  if (open && !greeted) { greeted = true; setTimeout(()=>botSay('Buenos días. Soy GALAN, asistente técnico de GALNAC. ¿En qué puedo ayudarle?'), 280); }
+  if (open && !greeted) { greeted = true; setTimeout(()=>botSay('Buenos días. Soy Galnac, asistente técnico de GALNAC. ¿En qué puedo ayudarle?'), 280); }
   if (open) setTimeout(()=>chatInput.focus(), 350);
 }
 function openChat(){ if(!chat.classList.contains('open')) toggleChat(); }
