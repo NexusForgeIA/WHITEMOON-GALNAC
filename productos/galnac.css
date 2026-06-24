@@ -86,8 +86,12 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 
 /* grid de modelos */
 .model-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.model-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
+.model-card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s,transform .3s}
 .model-card:hover{border-color:var(--border);transform:translateY(-4px)}
+.model-card .mmedia{height:200px;overflow:hidden;background:#0d1117}
+.model-card .mmedia img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.model-card:hover .mmedia img{transform:scale(1.05)}
+.model-card .mbody{padding:24px;display:flex;flex-direction:column;flex:1}
 .model-card .mname{font-family:var(--display);font-weight:800;font-size:1.5rem;text-transform:uppercase;letter-spacing:.01em;line-height:1}
 .model-card .mspec{margin-top:11px;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--p);border:1px solid var(--border);border-radius:100px;padding:4px 12px;align-self:flex-start}
 .model-card .mdesc{color:var(--muted);font-size:.9rem;margin-top:15px;flex:1}
