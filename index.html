@@ -102,9 +102,12 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 .hero-bg .beam{position:absolute;inset:-30%;background:conic-gradient(from 210deg at 72% 22%,transparent 0deg,rgba(245,166,35,.10) 22deg,transparent 48deg,transparent 360deg);mix-blend-mode:screen;animation:beam 22s linear infinite;filter:blur(8px)}
 @keyframes beam{to{transform:rotate(360deg)}}
 .hero-bg .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 78%);opacity:.5}
-.hero-bg .vignette{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,14,.55) 0%,transparent 30%,transparent 55%,rgba(8,10,14,.9) 100%)}
+.hero-bg .vignette{position:absolute;inset:0;z-index:3;background:linear-gradient(180deg,rgba(8,10,14,.55) 0%,transparent 30%,transparent 55%,rgba(8,10,14,.9) 100%)}
 .hero-bg .scan{position:absolute;left:0;right:0;height:140px;background:linear-gradient(180deg,transparent,rgba(245,166,35,.05),transparent);animation:scan 7s linear infinite}
 @keyframes scan{0%{top:-15%}100%{top:115%}}
+/* hero video (cantera/mina) — el fondo animado queda como fallback debajo */
+.hero-bg .hero-video{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.hero-bg .hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(0,0,0,.75) 0%,rgba(10,13,18,.85) 100%)}
 
 .hero-ghost{position:absolute;right:-2vw;top:6vh;font-family:var(--display);font-weight:800;font-size:clamp(13rem,30vw,32rem);line-height:.8;color:#fff;opacity:.035;z-index:1;pointer-events:none;letter-spacing:-.04em}
 .hero-content{position:relative;z-index:3;width:100%}
@@ -311,6 +314,9 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   .hero{padding-bottom:40px}
   .scroll-cue{display:none}
 }
+@media(max-width:768px){
+  .hero-bg .hero-video{display:none}
+}
 @media(max-width:600px){
   .wrap{padding:0 18px}
   .partners-grid,.dist-cols,.contact-info{grid-template-columns:1fr}
@@ -328,6 +334,7 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
   .reveal{opacity:1!important;transform:none!important}
+  .hero-bg .hero-video{display:none}
 }
 </style>
 </head>
@@ -374,6 +381,10 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
     <div class="beam"></div>
     <div class="grid"></div>
     <div class="scan"></div>
+    <video id="heroVid" class="hero-video" autoplay muted loop playsinline preload="none">
+      <source src="https://assets.mixkit.co/videos/46293/46293-720.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay"></div>
     <div class="vignette"></div>
   </div>
   <div class="hero-ghost" aria-hidden="true">1996</div>
