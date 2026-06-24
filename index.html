@@ -76,6 +76,20 @@ header.nav.scrolled::after{border-bottom-color:var(--line)}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:var(--p);transition:width .3s ease}
 .nav-links a:hover{color:var(--text)}
 .nav-links a:hover::after{width:100%}
+/* NAV DROPDOWN PRODUCTOS */
+.nav-dropdown{position:relative}
+.nav-dropdown>.nav-link{display:inline-flex;align-items:center;gap:5px;font-size:.83rem;font-weight:500;color:var(--muted);cursor:pointer;transition:color .25s}
+.nav-dropdown:hover>.nav-link{color:var(--text)}
+.nav-dropdown>.nav-link .chev{width:13px;height:13px;transition:transform .3s}
+.nav-dropdown:hover>.nav-link .chev{transform:rotate(180deg);color:var(--p)}
+.dropdown-menu{display:none;position:absolute;top:100%;right:0;margin-top:14px;background:#0d1117;border:1px solid rgba(245,166,35,.3);border-radius:12px;padding:18px;z-index:999;box-shadow:0 18px 50px rgba(0,0,0,.6);width:max-content;max-width:min(92vw,600px);grid-template-columns:1fr 1fr;gap:0 22px}
+.dropdown-menu::before{content:"";position:absolute;top:-14px;left:0;right:0;height:14px}
+.nav-dropdown:hover .dropdown-menu{display:grid}
+.dropdown-col{min-width:248px}
+.dropdown-category{padding:8px 14px 6px;color:var(--p);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.dropdown-category:not(:first-child){border-top:1px solid rgba(255,255,255,.06);margin-top:8px;padding-top:14px}
+.dropdown-item{display:block;padding:6px 14px;color:#c2c7d2;font-size:.82rem;text-decoration:none;border-radius:6px;transition:color .2s,background .2s,padding .2s}
+.dropdown-item:hover{color:var(--p);background:rgba(245,166,35,.06);padding-left:18px}
 .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.92rem;padding:13px 26px;border-radius:3px;border:1px solid var(--p);color:#0a0d12;background:var(--p);transition:transform .2s ease,box-shadow .3s ease,background .3s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(245,166,35,.6)}
 .btn.ghost{background:transparent;color:var(--p)}
@@ -220,18 +234,21 @@ section{position:relative}
 .org-img{box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
 .dist-map-img{width:100%;max-width:900px;display:block;margin:0 auto;border-radius:12px;border:1px solid var(--line)}
 
-/* PRODUCTOS */
-.prod-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:6px}
-.prod-card{background:var(--card);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:border-color .35s,transform .35s}
-.prod-card:hover{border-color:var(--border);transform:translateY(-5px)}
-.prod-img{height:320px;overflow:hidden;position:relative}
-.prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
-.prod-card:hover .prod-img img{transform:scale(1.06)}
-.prod-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,25,32,.65))}
-.prod-body{padding:28px 32px 32px}
-.prod-tag{display:inline-block;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--p);border:1px solid var(--border);border-radius:100px;padding:5px 14px;margin-bottom:15px}
-.prod-body h3{font-size:1.5rem;font-weight:700;letter-spacing:.01em}
-.prod-body p{color:var(--muted);font-size:.96rem;margin-top:12px}
+/* PRODUCTOS — cards de categoría */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:6px}
+.cat-card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .35s,transform .35s,box-shadow .35s}
+.cat-card:hover{transform:translateY(-6px);border-color:var(--p);box-shadow:0 24px 50px -26px rgba(245,166,35,.4)}
+.cat-media{height:188px;position:relative;background:linear-gradient(135deg,rgba(245,166,35,.16),rgba(20,25,32,.5))}
+.cat-media img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.cat-card:hover .cat-media img{transform:scale(1.05)}
+.cat-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,13,18,.15),rgba(20,25,32,.55))}
+.cat-badge{position:absolute;left:26px;bottom:-28px;z-index:2;width:62px;height:62px;border-radius:14px;background:var(--bg2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--p);box-shadow:0 14px 30px -12px rgba(0,0,0,.7)}
+.cat-badge svg{width:30px;height:30px}
+.cat-body{padding:42px 28px 28px;display:flex;flex-direction:column;flex:1}
+.cat-body h3{font-size:1.45rem;font-weight:700;letter-spacing:.01em}
+.cat-body p{color:var(--muted);font-size:.95rem;margin-top:12px;flex:1}
+.cat-cta{margin-top:20px;display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--p);transition:gap .3s}
+.cat-card:hover .cat-cta{gap:14px}
 
 /* CALIDAD */
 .calidad{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -330,12 +347,13 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   .wrap{padding:0 22px}
   .nav-links{display:none}
   .nav-cta .btn{display:none}
+  .nav-dropdown{display:none}
   .burger{display:flex}
   .sec{padding:88px 0}
   .historia-grid,.equipo-grid,.calidad-grid,.dist-top,.contact-grid{grid-template-columns:1fr;gap:46px}
   .equipo-grid .equipo-media{order:-1}
   .partners-grid,.dist-cols{grid-template-columns:1fr 1fr}
-  .prod-grid{grid-template-columns:1fr}
+  .cat-grid{grid-template-columns:1fr}
   .hero-stats{grid-template-columns:1fr 1fr}
   .contact-info{grid-template-columns:1fr 1fr}
   .hero{padding-bottom:40px}
@@ -380,13 +398,48 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
     <nav class="nav-links">
       <a href="#top">Inicio</a>
       <a href="#historia">Historia</a>
-      <a href="#productos">Productos</a>
       <a href="#partners">Partners</a>
       <a href="#equipo">Equipo</a>
       <a href="#calidad">Calidad</a>
       <a href="#distribuidores">Distribuidores</a>
     </nav>
     <div class="nav-cta">
+      <div class="nav-dropdown">
+        <a href="#productos" class="nav-link">Productos<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+        <div class="dropdown-menu">
+          <div class="dropdown-col">
+            <div class="dropdown-category">Compresores Galnac GLC</div>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 5.5 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 11 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 22 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 30 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 37 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 55 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 90 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor de tornillo GLC 160 kW</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Compresor sobre depósito GLC 7.5 kW</a>
+            <div class="dropdown-category">Equipos de Perforación Epiroc</div>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Epiroc SpeedROC 2F</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Epiroc SpeedROC 2FA</a>
+          </div>
+          <div class="dropdown-col">
+            <div class="dropdown-category">Martillos Hidráulicos Doofor</div>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF430F</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF430X</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF500X</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF530F</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF530S</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF530X</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF538L</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF540L</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF550L</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Doofor DF560L</a>
+            <div class="dropdown-category">Sistemas de Aire y Gas</div>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Generador de nitrógeno PSA SERFRAIR MNG3540</a>
+            <a class="dropdown-item" href="https://galnac.com/productos/" target="_blank" rel="noopener">Secador frigorífico SERFRIAIR MKE12500</a>
+          </div>
+        </div>
+      </div>
       <a href="#contacto" class="btn">Contacto</a>
       <div class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></div>
     </div>
@@ -477,26 +530,53 @@ footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
   <span class="bignum" style="right:-2vw;top:20px">02</span>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Qué ofrecemos</span>
-      <h2>Maquinaria y servicio<br>técnico especializado</h2>
+      <span class="eyebrow">Catálogo</span>
+      <h2>Nuestros productos</h2>
+      <p>Cuatro líneas de maquinaria y equipamiento industrial. Consulte el catálogo completo con todos los modelos en galnac.com.</p>
     </div>
-    <div class="prod-grid">
-      <article class="prod-card reveal">
-        <div class="prod-img"><img src="assets/compresor.jpeg" alt="Compresor Galnac GLC 15 VSD" loading="lazy" /></div>
-        <div class="prod-body">
-          <span class="prod-tag">Compresores</span>
-          <h3>Compresores eléctricos y diésel</h3>
-          <p>Compresores de tornillo, de pistón y portátiles de las marcas Epiroc y Atlas Copco. Venta, repuestos y servicio especializado de reparación de compresores de segunda mano.</p>
+    <div class="cat-grid">
+      <a class="cat-card reveal" href="https://galnac.com/productos/" target="_blank" rel="noopener">
+        <div class="cat-media">
+          <img src="assets/compresor.jpeg" alt="Compresor Galnac GLC" loading="lazy" />
+          <span class="cat-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
         </div>
-      </article>
-      <article class="prod-card reveal">
-        <div class="prod-img"><img src="assets/maquina-epiroc.jpeg" alt="Maquinaria de perforación Epiroc" loading="lazy" /></div>
-        <div class="prod-body">
-          <span class="prod-tag">Perforación</span>
-          <h3>Maquinaria de perforación</h3>
-          <p>Perforadoras hidráulicas, martillos de fondo de pozo y equipos de sondeo Doofor y Epiroc para minería, obra pública, pozos de agua y geotecnia.</p>
+        <div class="cat-body">
+          <h3>Compresores GLC</h3>
+          <p>Gama completa de compresores de tornillo eléctricos desde 5.5 kW hasta 160 kW. Para taller, industria y minería.</p>
+          <span class="cat-cta">Ver productos<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </div>
-      </article>
+      </a>
+      <a class="cat-card reveal" href="https://galnac.com/productos/" target="_blank" rel="noopener">
+        <div class="cat-media">
+          <span class="cat-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9"/><path d="M17.64 15 22 10.64"/><path d="m20.91 11.7-1.25-1.25c-.6-.6-.93-1.4-.93-2.25v-.86L16.01 4.6a5.56 5.56 0 0 0-3.94-1.64H9l.92.82A6.18 6.18 0 0 1 12 8.4v1.56l2 2h2.47l2.26 1.91"/></svg></span>
+        </div>
+        <div class="cat-body">
+          <h3>Martillos hidráulicos Doofor</h3>
+          <p>10 modelos de martillos hidráulicos para excavadoras. Series DF430 a DF560.</p>
+          <span class="cat-cta">Ver productos<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="cat-card reveal" href="https://galnac.com/productos/" target="_blank" rel="noopener">
+        <div class="cat-media">
+          <img src="assets/maquina-epiroc.jpeg" alt="Equipo de perforación Epiroc" loading="lazy" />
+          <span class="cat-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.531 12.469 6.619 20.38a1 1 0 1 1-3-3l7.912-7.912"/><path d="M15.686 4.314A12.5 12.5 0 0 0 5.461 2.958 1 1 0 0 0 5.58 4.71a22 22 0 0 1 6.318 3.393"/><path d="M17.7 3.7a1 1 0 0 0-1.4 0l-4.6 4.6a1 1 0 0 0 0 1.4l2.6 2.6a1 1 0 0 0 1.4 0l4.6-4.6a1 1 0 0 0 0-1.4z"/><path d="M19.686 8.314a12.501 12.501 0 0 1 1.356 10.225 1 1 0 0 1-1.751-.119 22 22 0 0 0-3.393-6.319"/></svg></span>
+        </div>
+        <div class="cat-body">
+          <h3>Equipos de perforación Epiroc</h3>
+          <p>Perforadoras SpeedROC para canteras, granito, mármol y roca dimensional.</p>
+          <span class="cat-cta">Ver productos<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
+      <a class="cat-card reveal" href="https://galnac.com/productos/" target="_blank" rel="noopener">
+        <div class="cat-media">
+          <span class="cat-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg></span>
+        </div>
+        <div class="cat-body">
+          <h3>Sistemas de aire y gas</h3>
+          <p>Generadores de nitrógeno y secadores frigoríficos SERFRIAIR para industria.</p>
+          <span class="cat-cta">Ver productos<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
