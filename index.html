@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GALNAC S.L. — Maquinaria Industrial · Compresores y Perforación desde 1996</title>
+<meta name="description" content="GALNAC S.L. — Maquinaria industrial en Porriño, Pontevedra desde 1996. Especialistas en compresores eléctricos Epiroc y Atlas Copco, reparación de compresores de segunda mano y maquinaria de perforación Doofor. ISO 9001 certificado por Bureau Veritas." />
+<meta name="theme-color" content="#0a0d12" />
+<link rel="canonical" href="https://galnac.com/" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="GALNAC S.L. — Maquinaria Industrial desde 1996" />
+<meta property="og:description" content="Compresores eléctricos, reparación de segunda mano y maquinaria de perforación. ISO 9001 · Bureau Veritas. Porriño, Pontevedra." />
+<meta property="og:image" content="https://nexusforgeia.github.io/WHITEMOON-GALNAC/og.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://galnac.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#0a0d12;
+  --bg2:#0f1318;
+  --card:#141920;
+  --p:#f5a623;
+  --p2:#ffc107;
+  --text:#e8eaf0;
+  --muted:#7a8394;
+  --border:rgba(245,166,35,.2);
+  --line:rgba(255,255,255,.06);
+  --display:"Barlow Condensed",system-ui,sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+  --maxw:1240px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--p);color:#0a0d12}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+h1,h2,h3,.display{font-family:var(--display);font-weight:800;line-height:.95;letter-spacing:-.01em;text-transform:uppercase}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.eyebrow{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.28em;font-size:.78rem;color:var(--p);display:inline-flex;align-items:center;gap:.7em}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--p);display:inline-block;opacity:.7}
+
+/* ============ CUSTOM CURSOR ============ */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:normal;will-change:transform}
+.cursor-dot{width:6px;height:6px;background:var(--p);margin:-3px 0 0 -3px}
+.cursor-ring{width:38px;height:38px;border:1.5px solid rgba(245,166,35,.55);margin:-19px 0 0 -19px;transition:width .25s ease,height .25s ease,border-color .25s ease,background .25s ease}
+.cursor-ring.hover{width:60px;height:60px;border-color:rgba(245,166,35,.9);background:rgba(245,166,35,.08)}
+@media (hover:none),(pointer:coarse){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============ NAV ============ */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:900;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s}
+header.nav::after{content:"";position:absolute;inset:0;border-bottom:1px solid transparent;transition:border-color .4s}
+header.nav.scrolled{background:rgba(8,10,14,.82);backdrop-filter:blur(14px)}
+header.nav.scrolled::after{border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:84px}
+.nav-logo{display:flex;align-items:center;gap:14px}
+.nav-logo img{height:38px;width:auto;filter:brightness(0) invert(1)}
+.nav-logo .sep{width:1px;height:26px;background:var(--line)}
+.nav-logo small{font-family:var(--display);font-weight:600;letter-spacing:.18em;font-size:.62rem;color:var(--muted);text-transform:uppercase;line-height:1.3}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-links a{font-size:.83rem;font-weight:500;color:var(--muted);position:relative;transition:color .25s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1.5px;background:var(--p);transition:width .3s ease}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.92rem;padding:13px 26px;border-radius:3px;border:1px solid var(--p);color:#0a0d12;background:var(--p);transition:transform .2s ease,box-shadow .3s ease,background .3s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 30px -10px rgba(245,166,35,.6)}
+.btn.ghost{background:transparent;color:var(--p)}
+.btn.ghost:hover{background:rgba(245,166,35,.08)}
+.nav-cta{display:flex;align-items:center;gap:18px}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2px;background:var(--text);transition:.3s}
+.mobile-menu{position:fixed;inset:0;background:rgba(8,10,14,.97);backdrop-filter:blur(10px);z-index:899;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:26px;opacity:0;pointer-events:none;transition:opacity .35s}
+.mobile-menu.open{opacity:1;pointer-events:auto}
+.mobile-menu a{font-family:var(--display);font-weight:700;text-transform:uppercase;font-size:1.7rem;color:var(--text);letter-spacing:.02em}
+.mobile-menu a:hover{color:var(--p)}
+
+/* ============ HERO ============ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding-bottom:54px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg .grad{position:absolute;inset:0;background:
+  radial-gradient(1100px 600px at 78% 18%,rgba(245,166,35,.16),transparent 60%),
+  radial-gradient(900px 700px at 12% 88%,rgba(245,166,35,.07),transparent 62%),
+  linear-gradient(180deg,#0c1016 0%,#0a0d12 55%,#080a0e 100%);
+  background-size:200% 200%,200% 200%,100% 100%;
+  animation:gradShift 18s ease-in-out infinite;
+}
+@keyframes gradShift{0%,100%{background-position:0% 0%,100% 100%,0 0}50%{background-position:60% 40%,30% 60%,0 0}}
+.hero-bg .beam{position:absolute;inset:-30%;background:conic-gradient(from 210deg at 72% 22%,transparent 0deg,rgba(245,166,35,.10) 22deg,transparent 48deg,transparent 360deg);mix-blend-mode:screen;animation:beam 22s linear infinite;filter:blur(8px)}
+@keyframes beam{to{transform:rotate(360deg)}}
+.hero-bg .grid{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 78%);opacity:.5}
+.hero-bg .vignette{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,10,14,.55) 0%,transparent 30%,transparent 55%,rgba(8,10,14,.9) 100%)}
+.hero-bg .scan{position:absolute;left:0;right:0;height:140px;background:linear-gradient(180deg,transparent,rgba(245,166,35,.05),transparent);animation:scan 7s linear infinite}
+@keyframes scan{0%{top:-15%}100%{top:115%}}
+
+.hero-ghost{position:absolute;right:-2vw;top:6vh;font-family:var(--display);font-weight:800;font-size:clamp(13rem,30vw,32rem);line-height:.8;color:#fff;opacity:.035;z-index:1;pointer-events:none;letter-spacing:-.04em}
+.hero-content{position:relative;z-index:3;width:100%}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--border);background:rgba(245,166,35,.06);padding:8px 16px;border-radius:100px;font-size:.78rem;font-weight:500;color:var(--p2);margin-bottom:30px}
+.hero-badge .dot{width:7px;height:7px;border-radius:50%;background:var(--p);box-shadow:0 0 0 0 rgba(245,166,35,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(245,166,35,.5)}70%{box-shadow:0 0 0 9px rgba(245,166,35,0)}100%{box-shadow:0 0 0 0 rgba(245,166,35,0)}}
+.hero h1{font-size:clamp(3.4rem,11vw,9.5rem);margin-bottom:6px}
+.hero h1 .since{display:block;color:var(--p);-webkit-text-fill-color:var(--p)}
+.hero h1 .ml{display:inline-block}
+.hero-rot{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:clamp(1.1rem,3vw,1.9rem);color:var(--muted);margin-top:22px;display:flex;align-items:baseline;gap:.5em;flex-wrap:wrap}
+.hero-rot .rot{color:var(--text);position:relative;min-width:8ch;display:inline-block}
+.hero-rot .rot b{font-weight:800;color:var(--p2);display:inline-block;transition:opacity .45s ease,transform .45s ease}
+.hero-rot .rot b.out{opacity:0;transform:translateY(12px)}
+.hero-desc{max-width:540px;color:var(--muted);font-size:1.02rem;margin-top:26px}
+.hero-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap}
+
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:64px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--line)}
+.stat{background:rgba(18,22,28,.62);backdrop-filter:blur(10px);padding:26px 24px;position:relative}
+.stat .v{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,4.4vw,3.2rem);line-height:1;color:var(--text)}
+.stat .v .u{color:var(--p)}
+.stat .l{font-size:.78rem;color:var(--muted);margin-top:9px;letter-spacing:.02em}
+
+.scroll-cue{position:absolute;left:32px;bottom:30px;z-index:4;display:flex;align-items:center;gap:12px;color:var(--muted);font-family:var(--display);font-weight:600;letter-spacing:.2em;font-size:.68rem;text-transform:uppercase}
+.scroll-cue .bar{width:1px;height:40px;background:var(--line);position:relative;overflow:hidden}
+.scroll-cue .bar::after{content:"";position:absolute;top:0;left:0;width:100%;height:40%;background:var(--p);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%{transform:translateY(-100%)}100%{transform:translateY(250%)}}
+
+/* ============ SECTIONS ============ */
+section{position:relative}
+.sec{padding:130px 0;position:relative}
+.sec-head{margin-bottom:64px;max-width:760px}
+.sec-head h2{font-size:clamp(2.4rem,6vw,4.6rem);margin-top:18px}
+.sec-head p{color:var(--muted);margin-top:20px;font-size:1.05rem;max-width:620px}
+.bignum{position:absolute;font-family:var(--display);font-weight:800;font-size:clamp(8rem,18vw,20rem);color:#fff;opacity:.03;line-height:.8;pointer-events:none;z-index:0;letter-spacing:-.04em}
+
+/* HISTORIA */
+.historia-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center;position:relative;z-index:2}
+.historia-copy p{color:#aeb6c4;font-size:1.06rem;margin-top:22px}
+.historia-copy p strong{color:var(--text);font-weight:600}
+.historia-media{position:relative}
+.framed{position:relative;border:1px solid var(--border);border-radius:10px;padding:14px;background:linear-gradient(180deg,rgba(245,166,35,.05),transparent);overflow:hidden}
+.framed::before{content:"";position:absolute;top:-1px;left:-1px;width:46px;height:46px;border-top:2px solid var(--p);border-left:2px solid var(--p);border-top-left-radius:10px}
+.framed::after{content:"";position:absolute;bottom:-1px;right:-1px;width:46px;height:46px;border-bottom:2px solid var(--p);border-right:2px solid var(--p);border-bottom-right-radius:10px}
+.framed img{border-radius:6px;width:100%}
+.tag-1996{position:absolute;left:-22px;bottom:-22px;background:var(--p);color:#0a0d12;font-family:var(--display);font-weight:800;font-size:1.5rem;padding:14px 22px;border-radius:6px;box-shadow:0 18px 40px -16px rgba(245,166,35,.7);text-transform:uppercase;letter-spacing:.04em}
+.tag-1996 span{display:block;font-size:.62rem;font-weight:600;letter-spacing:.2em;opacity:.8}
+
+/* PARTNERS */
+.partners{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.partners-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px}
+.partner{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:42px 34px;display:flex;flex-direction:column;gap:18px;transition:border-color .35s,transform .35s,background .35s;overflow:hidden}
+.partner::after{content:"";position:absolute;inset:0;background:radial-gradient(420px 200px at 80% 0%,rgba(245,166,35,.1),transparent 70%);opacity:0;transition:opacity .4s}
+.partner:hover{border-color:var(--border);transform:translateY(-6px)}
+.partner:hover::after{opacity:1}
+.partner-logo{height:54px;display:flex;align-items:center}
+.partner-logo img{max-height:52px;width:auto;object-fit:contain;filter:brightness(0) invert(1);opacity:.92}
+.partner h3{font-size:1.5rem;font-weight:700;letter-spacing:.01em}
+.partner p{color:var(--muted);font-size:.93rem;flex:1}
+.partner .go{display:inline-flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:.82rem;color:var(--p);position:relative;z-index:2}
+.partner .go svg{transition:transform .3s}
+.partner:hover .go svg{transform:translate(4px,-4px)}
+.cert-strip{display:flex;align-items:center;gap:22px;margin-top:30px;padding:22px 28px;border:1px dashed var(--border);border-radius:10px;background:rgba(245,166,35,.03)}
+.cert-strip img{height:60px;width:auto;background:#fff;padding:6px;border-radius:6px}
+.cert-strip p{color:var(--muted);font-size:.95rem}
+.cert-strip strong{color:var(--text)}
+
+/* EQUIPO */
+.equipo-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:70px;align-items:center;position:relative;z-index:2}
+.depts{display:flex;flex-direction:column;gap:0;margin-top:30px;border-top:1px solid var(--line)}
+.dept{display:flex;align-items:center;gap:22px;padding:20px 4px;border-bottom:1px solid var(--line);transition:padding-left .3s,background .3s}
+.dept:hover{padding-left:18px;background:linear-gradient(90deg,rgba(245,166,35,.05),transparent)}
+.dept .no{font-family:var(--display);font-weight:800;font-size:1.5rem;color:var(--p);min-width:48px}
+.dept .nm{font-family:var(--display);font-weight:700;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}
+.dept .ds{color:var(--muted);font-size:.88rem;margin-left:auto;text-align:right;max-width:48%}
+
+/* CALIDAD */
+.calidad{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.calidad-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.iso-block{display:flex;flex-direction:column;align-items:flex-start;gap:30px}
+.iso-badge{background:#fff;border-radius:12px;padding:22px 26px;display:inline-flex;align-items:center;gap:20px;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.iso-badge img{height:84px;width:auto}
+.iso-badge .txt{color:#0a0d12}
+.iso-badge .txt b{font-family:var(--display);font-weight:800;font-size:1.5rem;display:block;line-height:1;text-transform:uppercase}
+.iso-badge .txt small{color:#555;font-size:.74rem;letter-spacing:.04em}
+.calidad-copy p{color:#aeb6c4;font-size:1.06rem;margin-top:22px}
+.doclinks{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
+.doclink{display:inline-flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:7px;padding:14px 20px;font-weight:500;font-size:.92rem;transition:border-color .3s,background .3s,transform .2s}
+.doclink:hover{border-color:var(--border);background:rgba(245,166,35,.05);transform:translateY(-2px)}
+.doclink svg{color:var(--p);flex-shrink:0}
+
+/* DISTRIBUIDORES */
+.dist-top{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;margin-bottom:64px}
+.dist-cities{display:flex;flex-wrap:wrap;gap:9px;margin-top:26px}
+.chip{border:1px solid var(--line);border-radius:100px;padding:7px 15px;font-size:.82rem;color:var(--muted);transition:border-color .3s,color .3s}
+.chip:hover{border-color:var(--border);color:var(--text)}
+.dist-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.dist-col h3{font-size:1.35rem;font-weight:700;color:var(--p);display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.dist-col h3 .flag{font-size:1.4rem;line-height:1}
+.dcard{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:20px;margin-bottom:14px;transition:border-color .3s,transform .3s}
+.dcard:hover{border-color:var(--border);transform:translateX(4px)}
+.dcard .dn{font-family:var(--display);font-weight:700;font-size:1.12rem;text-transform:uppercase;letter-spacing:.01em;line-height:1.1}
+.dcard .dc{color:var(--p2);font-size:.82rem;margin-top:4px;font-weight:500}
+.dcard .di{color:var(--muted);font-size:.84rem;margin-top:10px;display:flex;align-items:center;gap:8px}
+.dcard .di svg{flex-shrink:0;color:var(--p);opacity:.8}
+
+/* CONTACTO / FOOTER */
+.contacto{background:linear-gradient(180deg,var(--bg) 0%,#060709 100%);border-top:1px solid var(--line)}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start}
+.contact-info{display:grid;grid-template-columns:1fr 1fr;gap:30px 40px;margin-top:40px}
+.cinfo .k{font-family:var(--display);font-weight:600;text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;color:var(--p);margin-bottom:8px}
+.cinfo .val{color:var(--text);font-size:1rem;line-height:1.5}
+.cinfo .val a:hover{color:var(--p)}
+.contact-cta{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:42px 38px}
+.contact-cta h3{font-size:2rem;font-weight:700}
+.contact-cta p{color:var(--muted);margin:16px 0 28px;font-size:.98rem}
+.contact-cta .btn{width:100%;justify-content:center;margin-bottom:12px}
+.contact-cta .btn.ghost{border-color:var(--line)}
+footer.foot{border-top:1px solid var(--line);padding:36px 0;margin-top:110px}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:.82rem}
+.foot-inner img{height:26px;filter:brightness(0) invert(1);opacity:.7}
+.foot-wm{color:var(--muted)}
+.foot-wm b{color:var(--p)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(38px)}
+.is-in .reveal,.reveal.is-in{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+
+/* ============ CHATBOT ============ */
+.fab{position:fixed;right:26px;bottom:26px;z-index:950;width:64px;height:64px;border-radius:50%;background:var(--p);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 16px 40px -10px rgba(245,166,35,.65);transition:transform .3s ease,box-shadow .3s}
+.fab:hover{transform:scale(1.08) rotate(15deg)}
+.fab svg{width:32px;height:32px;color:#0a0d12;animation:gear 12s linear infinite}
+@keyframes gear{to{transform:rotate(360deg)}}
+.fab .ping{position:absolute;inset:0;border-radius:50%;border:2px solid var(--p);animation:fabping 2.6s ease-out infinite}
+@keyframes fabping{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.5);opacity:0}}
+
+.chat{position:fixed;right:26px;bottom:26px;z-index:960;width:392px;max-width:calc(100vw - 32px);height:600px;max-height:calc(100vh - 40px);background:var(--bg2);border:1px solid var(--border);border-radius:16px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.9);transform:translateY(30px) scale(.96);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.16,1,.3,1),opacity .35s}
+.chat.open{transform:none;opacity:1;pointer-events:auto}
+.chat-head{display:flex;align-items:center;gap:14px;padding:18px 20px;background:var(--card);border-bottom:1px solid var(--line)}
+.chat-ava{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--p),#c97e10);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.chat-ava svg{width:26px;height:26px;color:#0a0d12}
+.chat-head .hi b{font-family:var(--display);font-weight:800;font-size:1.18rem;text-transform:uppercase;letter-spacing:.04em;display:block;line-height:1}
+.chat-head .hi small{color:var(--muted);font-size:.74rem;display:flex;align-items:center;gap:6px;margin-top:4px}
+.chat-head .hi small i{width:7px;height:7px;border-radius:50%;background:var(--g,#22c55e);display:inline-block}
+.chat-x{margin-left:auto;background:none;border:none;color:var(--muted);cursor:pointer;font-size:1.5rem;line-height:1;padding:4px 8px;transition:color .2s}
+.chat-x:hover{color:var(--text)}
+.chat-body{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:14px;scrollbar-width:thin;scrollbar-color:var(--p) transparent}
+.chat-body::-webkit-scrollbar{width:6px}
+.chat-body::-webkit-scrollbar-thumb{background:rgba(245,166,35,.4);border-radius:3px}
+.msg{max-width:84%;padding:12px 15px;border-radius:13px;font-size:.92rem;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;animation:msgin .35s ease}
+@keyframes msgin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.me{align-self:flex-end;background:var(--p);color:#0a0d12;font-weight:500;border-bottom-right-radius:4px}
+.typing{align-self:flex-start;display:flex;gap:5px;padding:14px 16px;background:var(--card);border:1px solid var(--line);border-radius:13px;border-bottom-left-radius:4px}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite}
+.typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
+.quicks{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 14px}
+.quick{font-family:var(--body);font-size:.8rem;font-weight:500;border:1px solid var(--border);background:rgba(245,166,35,.05);color:var(--p2);border-radius:100px;padding:8px 13px;cursor:pointer;transition:background .25s,transform .2s}
+.quick:hover{background:rgba(245,166,35,.16);transform:translateY(-2px)}
+.chat-input{display:flex;gap:10px;padding:14px 16px;border-top:1px solid var(--line);background:var(--card)}
+.chat-input input{flex:1;background:var(--bg);border:1px solid var(--line);border-radius:9px;color:var(--text);padding:12px 14px;font-family:var(--body);font-size:.92rem;outline:none;transition:border-color .25s}
+.chat-input input:focus{border-color:var(--border)}
+.chat-input button{background:var(--p);border:none;border-radius:9px;width:46px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s,opacity .2s}
+.chat-input button:hover{transform:scale(1.06)}
+.chat-input button:disabled{opacity:.45;cursor:default}
+.chat-input button svg{width:20px;height:20px;color:#0a0d12}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  .wrap{padding:0 22px}
+  .nav-links{display:none}
+  .nav-cta .btn{display:none}
+  .burger{display:flex}
+  .sec{padding:88px 0}
+  .historia-grid,.equipo-grid,.calidad-grid,.dist-top,.contact-grid{grid-template-columns:1fr;gap:46px}
+  .equipo-grid .equipo-media{order:-1}
+  .partners-grid,.dist-cols{grid-template-columns:1fr 1fr}
+  .hero-stats{grid-template-columns:1fr 1fr}
+  .contact-info{grid-template-columns:1fr 1fr}
+  .hero{padding-bottom:40px}
+  .scroll-cue{display:none}
+}
+@media(max-width:600px){
+  .wrap{padding:0 18px}
+  .partners-grid,.dist-cols,.contact-info{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(2.8rem,15vw,4rem)}
+  .dept .ds{display:none}
+  .tag-1996{left:50%;transform:translateX(-50%);bottom:-20px}
+  .cert-strip{flex-direction:column;text-align:center}
+  .iso-badge{flex-direction:column;text-align:center}
+  .chat{right:0;bottom:0;width:100vw;height:100vh;max-height:100vh;border-radius:0}
+  .fab{right:18px;bottom:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="nav-logo" aria-label="GALNAC inicio">
+      <img src="https://galnac.com/wp-content/uploads/2021/06/logo_web.png" alt="GALNAC" />
+      <span class="sep"></span>
+      <small>Maquinaria<br>Industrial</small>
+    </a>
+    <nav class="nav-links">
+      <a href="#top">Inicio</a>
+      <a href="#historia">Historia</a>
+      <a href="#partners">Partners</a>
+      <a href="#equipo">Equipo</a>
+      <a href="#calidad">Calidad</a>
+      <a href="#distribuidores">Distribuidores</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contacto" class="btn">Contacto</a>
+      <div class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#top">Inicio</a>
+  <a href="#historia">Historia</a>
+  <a href="#partners">Partners</a>
+  <a href="#equipo">Equipo</a>
+  <a href="#calidad">Calidad</a>
+  <a href="#distribuidores">Distribuidores</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg">
+    <div class="grad"></div>
+    <div class="beam"></div>
+    <div class="grid"></div>
+    <div class="scan"></div>
+    <div class="vignette"></div>
+  </div>
+  <div class="hero-ghost" aria-hidden="true">1996</div>
+
+  <div class="wrap hero-content">
+    <span class="hero-badge"><span class="dot"></span>GALNAC S.L. · ISO 9001 certificado</span>
+    <h1>
+      <span class="ml">Maquinaria</span><br>
+      <span class="ml">Industrial</span>
+      <span class="since">desde 1996</span>
+    </h1>
+
+    <div class="hero-rot">
+      <span>Especialistas en</span>
+      <span class="rot"><b id="rotWord">Compresores</b></span>
+    </div>
+
+    <p class="hero-desc reveal">Distribución y servicio técnico de compresores, perforadoras y repuestos para minería, obra pública e industria. Más de 20 años al lado de nuestros clientes desde Porriño, Pontevedra.</p>
+
+    <div class="hero-actions reveal">
+      <a href="#distribuidores" class="btn" data-cursor>Ver distribuidores</a>
+      <a href="#contacto" class="btn ghost" data-cursor>Solicitar presupuesto</a>
+    </div>
+
+    <div class="hero-stats reveal">
+      <div class="stat"><div class="v"><span data-count="20">0</span><span class="u">+</span></div><div class="l">Años de trayectoria</div></div>
+      <div class="stat"><div class="v">Global</div><div class="l">Partners internacionales</div></div>
+      <div class="stat"><div class="v">ISO<span class="u"> 9001</span></div><div class="l">Bureau Veritas</div></div>
+      <div class="stat"><div class="v">Red</div><div class="l">Nacional e internacional</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span class="bar"></span>Scroll</div>
+</section>
+
+<!-- ============ HISTORIA ============ -->
+<section class="sec" id="historia">
+  <span class="bignum" style="left:-2vw;top:30px">01</span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nuestra historia</span>
+      <h2>Orígenes en Galicia,<br>visión global</h2>
+    </div>
+    <div class="historia-grid">
+      <div class="historia-copy reveal">
+        <p>Galnac tiene sus orígenes en <strong>Galicia</strong>, donde llevamos ayudando a nuestros clientes desde hace más de 20 años.</p>
+        <p>La empresa comienza su andadura en el año <strong>1996</strong>, cuando sus fundadores —con más de 30 años de experiencia como técnicos y comerciales en el sector de la minería, obra pública e industria— deciden crear la empresa <strong>GALNAC S.L.</strong> en Porriño, Pontevedra.</p>
+      </div>
+      <div class="historia-media reveal">
+        <div class="framed" data-cursor>
+          <img src="https://galnac.com/wp-content/uploads/2021/08/linea-tiempo.png" alt="Línea de tiempo de GALNAC S.L." loading="lazy" />
+        </div>
+        <div class="tag-1996"><span>Fundación</span>1996</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section class="sec partners" id="partners">
+  <span class="bignum" style="right:-2vw;top:20px">02</span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Partners y marcas</span>
+      <h2>Proveedores sin límites</h2>
+      <p>En el año 2007, debido al brusco cambio de mercado, decidimos apostar por el mercado internacional. Seleccionamos proveedores que no nos limitasen nuestra área de actuación.</p>
+    </div>
+    <div class="partners-grid">
+      <a class="partner reveal" href="http://doofor.com" target="_blank" rel="noopener" data-cursor>
+        <div class="partner-logo"><img src="https://galnac.com/wp-content/uploads/2021/08/logo-doofor.png" alt="Doofor" loading="lazy" /></div>
+        <h3>Doofor</h3>
+        <p>Perforadoras hidráulicas y componentes de perforación de precisión para sondeo y geotecnia.</p>
+        <span class="go">Visitar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="partner reveal" href="http://epiroc.com/es-es" target="_blank" rel="noopener" data-cursor>
+        <div class="partner-logo"><img src="https://galnac.com/wp-content/uploads/2021/08/epiroc.jpeg" alt="Epiroc" loading="lazy" /></div>
+        <h3>Epiroc</h3>
+        <p>Compresores, equipos de perforación y martillos de fondo para minería y obra pública.</p>
+        <span class="go">Visitar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+      <a class="partner reveal" href="http://atlascopco.com/es-es" target="_blank" rel="noopener" data-cursor>
+        <div class="partner-logo"><img src="https://galnac.com/wp-content/uploads/2021/08/logo-atlas.png" alt="Atlas Copco" loading="lazy" /></div>
+        <h3>Atlas Copco</h3>
+        <p>Compresores de tornillo eléctricos, de pistón y portátiles diésel de alto rendimiento.</p>
+        <span class="go">Visitar<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M17 7H8M17 7v9"/></svg></span>
+      </a>
+    </div>
+    <div class="cert-strip reveal">
+      <img src="https://galnac.com/wp-content/uploads/2022/05/ISO9001logo-bureu-veritas.jpg" alt="ISO 9001 Bureau Veritas" loading="lazy" />
+      <p>Calidad auditada y certificada por <strong>Bureau Veritas</strong> bajo la norma <strong>ISO 9001</strong>, garantía de procesos fiables en venta y postventa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EQUIPO ============ -->
+<section class="sec" id="equipo">
+  <span class="bignum" style="left:-2vw;top:30px">03</span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Nuestro equipo</span>
+      <h2>Once personas,<br>cinco departamentos</h2>
+    </div>
+    <div class="equipo-grid">
+      <div class="equipo-media reveal">
+        <div class="framed" data-cursor>
+          <img src="https://galnac.com/wp-content/uploads/2021/08/jerarquia.png" alt="Organigrama y jerarquía de GALNAC S.L." loading="lazy" />
+        </div>
+      </div>
+      <div class="equipo-copy reveal">
+        <p style="color:#aeb6c4;font-size:1.06rem">Nuestro equipo está conformado por <strong style="color:var(--text)">once personas</strong> que se distribuyen en cinco departamentos, coordinados para ofrecer un servicio técnico ágil y preciso.</p>
+        <div class="depts">
+          <div class="dept"><span class="no">01</span><span class="nm">Dirección</span><span class="ds">Estrategia y relación con clientes y proveedores</span></div>
+          <div class="dept"><span class="no">02</span><span class="nm">I+D+i</span><span class="ds">Innovación y desarrollo de soluciones técnicas</span></div>
+          <div class="dept"><span class="no">03</span><span class="nm">Ventas</span><span class="ds">Asesoramiento y comercialización de maquinaria</span></div>
+          <div class="dept"><span class="no">04</span><span class="nm">Administración</span><span class="ds">Gestión, logística y atención al cliente</span></div>
+          <div class="dept"><span class="no">05</span><span class="nm">Posventa y asistencia</span><span class="ds">Servicio técnico, reparación y repuestos</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALIDAD ============ -->
+<section class="sec calidad" id="calidad">
+  <span class="bignum" style="right:-2vw;top:20px">04</span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Calidad certificada</span>
+      <h2>Compromiso ISO 9001</h2>
+    </div>
+    <div class="calidad-grid">
+      <div class="iso-block reveal">
+        <div class="iso-badge" data-cursor>
+          <img src="https://galnac.com/wp-content/uploads/2022/05/ISO9001logo-bureu-veritas.jpg" alt="Certificado ISO 9001 Bureau Veritas" loading="lazy" />
+          <div class="txt"><b>ISO 9001</b><small>Certificado · Bureau Veritas</small></div>
+        </div>
+        <div class="doclinks">
+          <a href="#contacto" class="doclink" data-cursor>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            Política de Calidad
+          </a>
+          <a href="#contacto" class="doclink" data-cursor>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+            Certificado ISO 9001
+          </a>
+        </div>
+      </div>
+      <div class="calidad-copy reveal">
+        <p>Lograr la <strong>plena satisfacción de nuestros clientes</strong>, suministrándoles los mejores productos y servicios de forma eficiente, es nuestro mayor objetivo.</p>
+        <p>Hace ya más de 10 años nuestra empresa trabaja con un <strong>sistema de gestión ISO 9001</strong> certificado por Bureau Veritas, que respalda cada proceso de venta, distribución y asistencia técnica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DISTRIBUIDORES ============ -->
+<section class="sec" id="distribuidores">
+  <span class="bignum" style="left:-2vw;top:20px">05</span>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Red de distribución</span>
+      <h2>Presentes donde<br>nos necesitan</h2>
+    </div>
+    <div class="dist-top">
+      <div class="reveal">
+        <p style="color:#aeb6c4;font-size:1.06rem">Red de distribución con puntos de venta y postventa repartidos por la península y el sur de Europa, para garantizar cercanía, repuestos y asistencia técnica allá donde opera nuestra maquinaria.</p>
+        <div class="dist-cities">
+          <span class="chip">Lisboa</span><span class="chip">Porto</span><span class="chip">Braga</span>
+          <span class="chip">Córdoba</span><span class="chip">Valencia</span><span class="chip">Barcelona</span>
+          <span class="chip">Tarragona</span><span class="chip">País Vasco</span><span class="chip">Valladolid</span>
+          <span class="chip">León</span><span class="chip">Zaragoza</span><span class="chip">Navarra</span>
+          <span class="chip">Logroño</span><span class="chip">Asturias</span>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="framed" data-cursor>
+          <img src="https://galnac.com/wp-content/uploads/2021/08/mapa-1.png" alt="Mapa de distribuidores GALNAC" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="dist-cols">
+      <div class="dist-col reveal">
+        <h3><span class="flag">🇪🇸</span> España</h3>
+        <div class="dcard" data-cursor>
+          <div class="dn">Galnac · Sede Central</div>
+          <div class="dc">Porriño, Pontevedra</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>986 349 377 · 986 342 648</div>
+        </div>
+        <div class="dcard" data-cursor>
+          <div class="dn">Compresores Acebes S.L.</div>
+          <div class="dc">Valladolid</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>983 403 123</div>
+        </div>
+        <div class="dcard" data-cursor>
+          <div class="dn">LEDEL Técnica Industrial S.L.U</div>
+          <div class="dc">Utrera, Sevilla</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>955 49 29 88</div>
+        </div>
+        <div class="dcard" data-cursor>
+          <div class="dn">Folch Técnica Industrial S.L.</div>
+          <div class="dc">Terrassa, Barcelona</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>93 731 80 88</div>
+        </div>
+      </div>
+
+      <div class="dist-col reveal">
+        <h3><span class="flag">🇵🇹</span> Portugal</h3>
+        <div class="dcard" data-cursor>
+          <div class="dn">A.B-H-A Compr.</div>
+          <div class="dc">Arruda dos Vinhos</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>966 027 905</div>
+        </div>
+        <div class="dcard" data-cursor>
+          <div class="dn">Bragair Sistemas de Fluídos</div>
+          <div class="dc">Vila Verde</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>911 705 300</div>
+        </div>
+        <div class="dcard" data-cursor>
+          <div class="dn">SEROLF Rolamentos &amp; Borrachas</div>
+          <div class="dc">Tomar</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>geral@serolf.pt</div>
+        </div>
+      </div>
+
+      <div class="dist-col reveal">
+        <h3><span class="flag">🇫🇷</span> Francia</h3>
+        <div class="dcard" data-cursor>
+          <div class="dn">Société Nouvelle Zema</div>
+          <div class="dc">Maing</div>
+          <div class="di"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>+33 3 27 31 03 30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO ============ -->
+<section class="sec contacto" id="contacto">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <div class="sec-head reveal" style="margin-bottom:10px">
+          <span class="eyebrow">Contacto</span>
+          <h2>Hablemos de su<br>maquinaria</h2>
+        </div>
+        <div class="contact-info reveal">
+          <div class="cinfo"><div class="k">Dirección</div><div class="val">Polígono Industrial A Granxa,<br>Calle E · Parcela 69<br>36400 Porriño, Pontevedra</div></div>
+          <div class="cinfo"><div class="k">Teléfono</div><div class="val"><a href="tel:+34986349377">+34 986 349 377</a><br><a href="tel:+34986342648">+34 986 342 648</a></div></div>
+          <div class="cinfo"><div class="k">Email</div><div class="val"><a href="mailto:info@galnac.com">info@galnac.com</a></div></div>
+          <div class="cinfo"><div class="k">Fax</div><div class="val">986 347 235</div></div>
+          <div class="cinfo"><div class="k">Web</div><div class="val"><a href="https://galnac.com" target="_blank" rel="noopener">galnac.com</a></div></div>
+          <div class="cinfo"><div class="k">Horario</div><div class="val">Lun · Vie<br>9:00 — 18:00</div></div>
+        </div>
+      </div>
+      <div class="contact-cta reveal">
+        <h3>Solicite presupuesto</h3>
+        <p>Cuéntenos qué equipo necesita o qué compresor quiere reparar. Nuestro asistente técnico GALAN recoge los datos y nuestro equipo le contacta en 24 horas.</p>
+        <button class="btn" data-cursor onclick="openChat()">Hablar con GALAN</button>
+        <a href="tel:+34986349377" class="btn ghost" data-cursor style="border-color:var(--line);color:var(--text)">Llamar ahora</a>
+      </div>
+    </div>
+
+    <footer class="foot">
+      <div class="foot-inner">
+        <img src="https://galnac.com/wp-content/uploads/2021/06/logo_web.png" alt="GALNAC" />
+        <span>© 1996—2026 GALNAC S.L. · Maquinaria Industrial · Porriño, Pontevedra · ISO 9001 Bureau Veritas</span>
+        <span class="foot-wm">Demo IA por <b>WhiteMoon</b></span>
+      </div>
+    </footer>
+  </div>
+</section>
+
+<!-- ============ CHATBOT GALAN ============ -->
+<button class="fab" id="fab" aria-label="Abrir asistente GALAN" onclick="toggleChat()">
+  <span class="ping"></span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 13.6 1h-3.2c-.24 0-.44.17-.48.41l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.48.41h3.2c.24 0 .44-.17.48-.41l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5z"/></svg>
+</button>
+
+<div class="chat" id="chat" aria-live="polite">
+  <div class="chat-head">
+    <div class="chat-ava">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.488.488 0 0 0 13.6 1h-3.2c-.24 0-.44.17-.48.41l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.04.24.24.41.48.41h3.2c.24 0 .44-.17.48-.41l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5z"/></svg>
+    </div>
+    <div class="hi"><b>GALAN</b><small><i></i>Asistente técnico · GALNAC</small></div>
+    <button class="chat-x" aria-label="Cerrar" onclick="toggleChat()">×</button>
+  </div>
+  <div class="chat-body" id="chatBody"></div>
+  <div class="quicks" id="quicks">
+    <button class="quick" onclick="quickSend('Cuénteme sobre los compresores eléctricos')">Compresores eléctricos</button>
+    <button class="quick" onclick="quickSend('Necesito reparar un compresor de segunda mano')">Reparación segunda mano</button>
+    <button class="quick" onclick="quickSend('Información sobre maquinaria de perforación')">Maquinaria de perforación</button>
+    <button class="quick" onclick="quickSend('¿Dónde tienen distribuidores?')">Distribuidores</button>
+    <button class="quick" onclick="quickSend('Quiero solicitar un presupuesto')">Solicitar presupuesto</button>
+  </div>
+  <form class="chat-input" id="chatForm" autocomplete="off">
+    <input id="chatInput" type="text" placeholder="Escriba su consulta técnica…" aria-label="Mensaje" />
+    <button type="submit" id="chatSend" aria-label="Enviar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+    </button>
+  </form>
+</div>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- NAV ---------- */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+const burger = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+burger.addEventListener('click', () => { burger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.remove('open'); burger.classList.remove('open'); }));
+
+/* ---------- ROTATING WORD ---------- */
+const words = ['Compresores','Perforadoras','Maquinaria','Repuestos'];
+let wi = 0;
+const rotEl = document.getElementById('rotWord');
+if (!REDUCED) {
+  setInterval(() => {
+    rotEl.classList.add('out');
+    setTimeout(() => { wi = (wi+1) % words.length; rotEl.textContent = words[wi]; rotEl.classList.remove('out'); }, 450);
+  }, 2400);
+}
+
+/* ---------- CUSTOM CURSOR ---------- */
+const dot = document.querySelector('.cursor-dot');
+const ring = document.querySelector('.cursor-ring');
+if (matchMedia('(pointer:fine)').matches) {
+  let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+  addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; dot.style.transform=`translate(${mx}px,${my}px)`; });
+  (function loop(){ rx+=(mx-rx)*.16; ry+=(my-ry)*.16; ring.style.transform=`translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
+  const hoverSel = 'a,button,[data-cursor],.quick,.chip,.dept';
+  document.addEventListener('mouseover', e => { if (e.target.closest(hoverSel)) ring.classList.add('hover'); });
+  document.addEventListener('mouseout', e => { if (e.target.closest(hoverSel)) ring.classList.remove('hover'); });
+}
+
+/* ---------- COUNT-UP ---------- */
+function countUp(el){
+  const target = +el.dataset.count; const dur = 1500; let start = null;
+  function step(t){ if(!start) start=t; const p=Math.min((t-start)/dur,1); el.textContent = Math.floor(p*target); if(p<1) requestAnimationFrame(step); else el.textContent=target; }
+  requestAnimationFrame(step);
+}
+
+/* ---------- REVEAL + SCROLL ANIM ---------- */
+function showAll(){ document.querySelectorAll('.reveal').forEach(e=>e.classList.add('is-in')); document.querySelectorAll('[data-count]').forEach(countUp); }
+if (REDUCED || typeof gsap === 'undefined') {
+  showAll();
+} else {
+  gsap.registerPlugin(ScrollTrigger);
+  // staggered reveal
+  ScrollTrigger.batch('.reveal', {
+    start:'top 86%',
+    onEnter: b => gsap.to(b, {opacity:1, y:0, duration:.9, stagger:.1, ease:'power3.out', overwrite:true, onStart:()=>b.forEach(x=>x.classList.add('is-in'))})
+  });
+  // hero headline split-in
+  gsap.from('.hero h1 .ml, .hero h1 .since', {y:60, opacity:0, duration:1, stagger:.12, ease:'power4.out', delay:.15});
+  gsap.from('.hero-badge', {y:20, opacity:0, duration:.8, delay:.05, ease:'power3.out'});
+  // counters — fire immediately if already in view (hero), else on scroll
+  document.querySelectorAll('[data-count]').forEach(el => {
+    if (el.getBoundingClientRect().top < innerHeight) countUp(el);
+    else ScrollTrigger.create({trigger:el, start:'top 92%', once:true, onEnter:()=>countUp(el)});
+  });
+  // parallax on framed images & ghost
+  gsap.utils.toArray('.framed img').forEach(img => gsap.to(img, {yPercent:-8, ease:'none', scrollTrigger:{trigger:img.closest('section'), start:'top bottom', end:'bottom top', scrub:true}}));
+  gsap.to('.hero-ghost', {yPercent:18, ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
+  gsap.utils.toArray('.bignum').forEach(n => gsap.to(n, {yPercent:-14, ease:'none', scrollTrigger:{trigger:n.closest('section'), start:'top bottom', end:'bottom top', scrub:true}}));
+}
+
+/* ============ CHATBOT ENGINE ============ */
+const SUPA_URL = 'https://mlaqtniujnvfxcvcourm.supabase.co';
+const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sYXF0bml1am52ZnhjdmNvdXJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzUyMzIsImV4cCI6MjA5MzQxMTIzMn0.Neh7VUS8ADsxf0DPab0JoJyGXOAXnLIaXzXbKzj2BGs';
+const CHAT_URL = `${SUPA_URL}/functions/v1/galnac-chat`;
+const NOTIFY_URL = `${SUPA_URL}/functions/v1/galnac-notify`;
+const LEADS_URL = `${SUPA_URL}/rest/v1/leads_web`;
+
+const chat = document.getElementById('chat');
+const fab = document.getElementById('fab');
+const chatBody = document.getElementById('chatBody');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
+const quicks = document.getElementById('quicks');
+let history = [];
+let greeted = false;
+let leadSent = false;
+
+function toggleChat(){
+  const open = chat.classList.toggle('open');
+  fab.style.display = open ? 'none' : 'flex';
+  if (open && !greeted) { greeted = true; setTimeout(()=>botSay('Buenos días. Soy GALAN, asistente técnico de GALNAC. ¿En qué puedo ayudarle?'), 280); }
+  if (open) setTimeout(()=>chatInput.focus(), 350);
+}
+function openChat(){ if(!chat.classList.contains('open')) toggleChat(); }
+
+function addMsg(text, who){
+  const el = document.createElement('div');
+  el.className = 'msg ' + who;
+  el.textContent = text;
+  chatBody.appendChild(el);
+  chatBody.scrollTop = chatBody.scrollHeight;
+}
+function botSay(text){ addMsg(text, 'bot'); history.push({role:'assistant', content:text}); }
+
+function showTyping(){
+  const t = document.createElement('div');
+  t.className = 'typing'; t.id = 'typing';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  chatBody.appendChild(t); chatBody.scrollTop = chatBody.scrollHeight;
+}
+function hideTyping(){ const t = document.getElementById('typing'); if (t) t.remove(); }
+
+async function handleLead(raw){
+  const m = raw.match(/\[LEAD\]([\s\S]*?)\[\/LEAD\]/);
+  if (!m) return;
+  if (leadSent) return;
+  leadSent = true;
+  let d = {};
+  try { d = JSON.parse(m[1]); } catch(e){ return; }
+  const mensaje = [d.marca ? 'Marca/modelo: ' + d.marca : '', d.uso ? 'Uso: ' + d.uso : ''].filter(Boolean).join(' · ');
+  try {
+    await fetch(LEADS_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON,'Prefer':'return=minimal'},
+      body: JSON.stringify({ nombre:d.nombre||'', telefono:d.telefono||'', sector:'maquinaria-industrial', interes:d.equipo||'', mensaje, origen:'galnac-demo' })
+    });
+  } catch(e){ console.warn('lead insert', e); }
+  try {
+    await fetch(NOTIFY_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON},
+      body: JSON.stringify({ nombre:d.nombre||'', telefono:d.telefono||'', equipo:d.equipo||'', marca:d.marca||'', uso:d.uso||'' })
+    });
+  } catch(e){ console.warn('notify', e); }
+}
+
+async function send(text){
+  if (!text.trim()) return;
+  if (quicks) quicks.style.display = 'none';
+  addMsg(text, 'me');
+  history.push({role:'user', content:text});
+  chatInput.value = '';
+  chatSend.disabled = true;
+  showTyping();
+  try {
+    const r = await fetch(CHAT_URL, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON},
+      body: JSON.stringify({ messages: history })
+    });
+    const data = await r.json();
+    hideTyping();
+    let reply = data.reply || 'Disculpe, puede contactar con GALNAC en el +34 986 349 377.';
+    handleLead(reply);
+    const clean = reply.replace(/\[LEAD\][\s\S]*?\[\/LEAD\]/g, '').trim();
+    botSay(clean || reply);
+  } catch(e){
+    hideTyping();
+    botSay('Disculpe, ha ocurrido un inconveniente técnico. Puede contactar con GALNAC en el +34 986 349 377 o en info@galnac.com.');
+  } finally {
+    chatSend.disabled = false;
+    chatInput.focus();
+  }
+}
+function quickSend(text){ send(text); }
+document.getElementById('chatForm').addEventListener('submit', e => { e.preventDefault(); send(chatInput.value); });
+</script>
+</body>
+</html>
