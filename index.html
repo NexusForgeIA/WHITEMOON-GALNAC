@@ -936,12 +936,8 @@ window.addEventListener('DOMContentLoaded', function(){
   }
 });
 
-/* ============ CHATBOT ENGINE ============ */
-const SUPA_URL = 'https://mlaqtniujnvfxcvcourm.supabase.co';
-const ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1sYXF0bml1am52ZnhjdmNvdXJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MzUyMzIsImV4cCI6MjA5MzQxMTIzMn0.Neh7VUS8ADsxf0DPab0JoJyGXOAXnLIaXzXbKzj2BGs';
-const CHAT_URL = `${SUPA_URL}/functions/v1/galnac-chat`;
-const NOTIFY_URL = `${SUPA_URL}/functions/v1/galnac-notify`;
-const LEADS_URL = `${SUPA_URL}/rest/v1/leads_web`;
+/* ============ CHATBOT ENGINE — 100% local (sin backend) ============ */
+const WHATSAPP = '34643199580';
 
 const chat = document.getElementById('chat');
 const fab = document.getElementById('fab');
@@ -949,17 +945,22 @@ const chatBody = document.getElementById('chatBody');
 const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
 const quicks = document.getElementById('quicks');
-let history = [];
+
 let greeted = false;
-let leadSent = false;
+let estado = 'inicio';              // inicio | esperando_nombre | esperando_telefono
+let leadNombre = '';
+let leadTelefono = '';
 
 function toggleChat(){
   const open = chat.classList.toggle('open');
   fab.style.display = open ? 'none' : 'flex';
-  if (open && !greeted) { greeted = true; setTimeout(()=>botSay('Buenos días. Soy GLC, asistente técnico de GALNAC. ¿En qué puedo ayudarle?'), 280); }
+  if (open && !greeted) {
+    greeted = true;
+    setTimeout(()=>botSay('Buenos días. Soy GLC, asistente técnico de GALNAC. Trabajamos compresores GLC, martillos Doofor, perforación Epiroc y soluciones de nitrógeno para bodegas. ¿En qué puedo ayudarle?'), 280);
+  }
   if (open) setTimeout(()=>chatInput.focus(), 350);
 }
-function openChat(){ if(!chat.classList.contains('open')) toggleChat(); }
+function openChat(){ if (!chat.classList.contains('open')) toggleChat(); }
 
 function addMsg(text, who){
   const el = document.createElement('div');
@@ -968,69 +969,106 @@ function addMsg(text, who){
   chatBody.appendChild(el);
   chatBody.scrollTop = chatBody.scrollHeight;
 }
-function botSay(text){ addMsg(text, 'bot'); history.push({role:'assistant', content:text}); }
+function botSay(text){ addMsg(text, 'bot'); }
 
 function showTyping(){
   const t = document.createElement('div');
   t.className = 'typing'; t.id = 'typing';
   t.innerHTML = '<span></span><span></span><span></span>';
-  chatBody.appendChild(t); chatBody.scrollTop = chatBody.scrollHeight;
+  chatBody.appendChild(t);
+  chatBody.scrollTop = chatBody.scrollHeight;
 }
 function hideTyping(){ const t = document.getElementById('typing'); if (t) t.remove(); }
 
-async function handleLead(raw){
-  const m = raw.match(/\[LEAD\]([\s\S]*?)\[\/LEAD\]/);
-  if (!m) return;
-  if (leadSent) return;
-  leadSent = true;
-  let d = {};
-  try { d = JSON.parse(m[1]); } catch(e){ return; }
-  const mensaje = [d.marca ? 'Marca/modelo: ' + d.marca : '', d.uso ? 'Uso: ' + d.uso : ''].filter(Boolean).join(' · ');
-  try {
-    await fetch(LEADS_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON,'Prefer':'return=minimal'},
-      body: JSON.stringify({ nombre:d.nombre||'', telefono:d.telefono||'', sector:'maquinaria-industrial', interes:d.equipo||'', mensaje, origen:'galnac-demo' })
-    });
-  } catch(e){ console.warn('lead insert', e); }
-  try {
-    await fetch(NOTIFY_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON},
-      body: JSON.stringify({ nombre:d.nombre||'', telefono:d.telefono||'', equipo:d.equipo||'', marca:d.marca||'', uso:d.uso||'' })
-    });
-  } catch(e){ console.warn('notify', e); }
+// Abre WhatsApp con el lead ya recogido (sin backend, 100% cliente)
+function enviarWhatsApp(nombre, telefono){
+  const mensaje = encodeURIComponent(
+    `Hola, soy ${nombre} (teléfono: ${telefono}). Me gustaría recibir información comercial de GALNAC.`
+  );
+  window.open(`https://wa.me/${WHATSAPP}?text=${mensaje}`, '_blank');
 }
 
-async function send(text){
-  if (!text.trim()) return;
+// Motor conversacional local: decide la respuesta del bot según el estado
+function procesarMensaje(texto){
+  const t = texto.toLowerCase().trim();
+
+  // Captura de nombre
+  if (estado === 'esperando_nombre') {
+    leadNombre = texto.trim();
+    estado = 'esperando_telefono';
+    return `Gracias, ${leadNombre}. ¿Me indica un teléfono de contacto para que el Departamento Comercial le llame?`;
+  }
+
+  // Captura de teléfono → abrir WhatsApp
+  if (estado === 'esperando_telefono') {
+    leadTelefono = texto.trim();
+    estado = 'inicio';
+    enviarWhatsApp(leadNombre, leadTelefono);
+    return `Perfecto, ${leadNombre}. Le abro WhatsApp para hablar con nuestro equipo ahora mismo. Si no se abre, escríbanos al +34 643 199 580.`;
+  }
+
+  // Intención de presupuesto / contacto → pedir nombre
+  if (t.includes('presupuesto') || t.includes('precio') || t.includes('contact') || t.includes('comercial') || t.includes('llam') || t.includes('whatsapp')) {
+    estado = 'esperando_nombre';
+    return 'Con gusto le derivo al Departamento Comercial. ¿Me indica su nombre?';
+  }
+
+  // Nitrógeno
+  if (t.includes('nitrógeno') || t.includes('nitrogeno') || t.includes('n2')) {
+    return 'Nuestros generadores de nitrógeno PSA producen N2 con una pureza de hasta 99,995%, eliminando el oxígeno en procesos como el envasado de alimentos o las bodegas de vino. ¿Quiere que el Departamento Comercial le prepare una propuesta?';
+  }
+
+  // Compresores
+  if (t.includes('compresor') || t.includes('glc')) {
+    return 'Fabricamos compresores de tornillo GLC de marca propia, desde 5,5 hasta 160 kW, para taller, industria y bodegas, con servicio técnico propio. ¿Desea un presupuesto?';
+  }
+
+  // Martillos hidráulicos
+  if (t.includes('martillo') || t.includes('doofor')) {
+    return 'Somos distribuidor oficial de martillos hidráulicos Doofor para excavadora (minería, canteras y obra pública). ¿Quiere información comercial?';
+  }
+
+  // Perforación
+  if (t.includes('perforaci') || t.includes('epiroc') || t.includes('cantera')) {
+    return 'Distribuimos equipos de perforación Epiroc SpeedROC para canteras de granito, mármol y caliza. ¿Le preparamos una propuesta?';
+  }
+
+  // Reparación / servicio técnico
+  if (t.includes('repar') || t.includes('avería') || t.includes('averia') || t.includes('servicio') || t.includes('mantenim') || t.includes('segunda mano')) {
+    return 'Reparamos y revisamos compresores de cualquier marca, con diagnóstico técnico gratuito y garantía. También disponemos de compresores de segunda mano revisados. ¿Quiere que le contacte el Departamento Comercial?';
+  }
+
+  // Distribuidores
+  if (t.includes('distribuid') || t.includes('dónde') || t.includes('donde') || t.includes('cercano')) {
+    return 'Contamos con red de distribución en España, Portugal y Francia, con repuestos y asistencia técnica cercana. ¿Quiere que el Departamento Comercial le indique el punto más cercano?';
+  }
+
+  // Saludo
+  if (t.includes('hola') || t.includes('buenas') || t.includes('buenos')) {
+    return 'Buenos días. Soy GLC, asistente técnico de GALNAC. ¿En qué puedo ayudarle?';
+  }
+
+  // Respuesta por defecto
+  return 'Puedo informarle sobre compresores GLC, martillos Doofor, perforación Epiroc, nitrógeno y reparaciones. Si lo prefiere, escriba "presupuesto" y le derivo al Departamento Comercial.';
+}
+
+function send(text){
+  if (!text || !text.trim()) return;
   if (quicks) quicks.style.display = 'none';
   addMsg(text, 'me');
-  history.push({role:'user', content:text});
   chatInput.value = '';
   chatSend.disabled = true;
   showTyping();
-  try {
-    const r = await fetch(CHAT_URL, {
-      method:'POST',
-      headers:{'Content-Type':'application/json','apikey':ANON,'Authorization':'Bearer '+ANON},
-      body: JSON.stringify({ messages: history })
-    });
-    const data = await r.json();
+  const reply = procesarMensaje(text);
+  setTimeout(() => {
     hideTyping();
-    let reply = data.reply || 'Disculpe, puede contactar con GALNAC en el +34 986 349 377.';
-    handleLead(reply);
-    const clean = reply.replace(/\[LEAD\][\s\S]*?\[\/LEAD\]/g, '').trim();
-    botSay(clean || reply);
-  } catch(e){
-    hideTyping();
-    botSay('Disculpe, ha ocurrido un inconveniente técnico. Puede contactar con GALNAC en el +34 986 349 377 o en info@galnac.com.');
-  } finally {
+    botSay(reply);
     chatSend.disabled = false;
     chatInput.focus();
-  }
+  }, 500);
 }
 function quickSend(text){ send(text); }
+
 document.getElementById('chatForm').addEventListener('submit', e => { e.preventDefault(); send(chatInput.value); });
 </script>
 </body>
