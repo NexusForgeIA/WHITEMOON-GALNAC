@@ -937,7 +937,7 @@ window.addEventListener('DOMContentLoaded', function(){
 });
 
 /* ============ CHATBOT ENGINE — 100% local (sin backend) ============ */
-const WHATSAPP = '34643199580';
+const SUPABASE_URL = 'https://mlaqtniujnvfxcvcourm.supabase.co';
 
 const chat = document.getElementById('chat');
 const fab = document.getElementById('fab');
@@ -950,6 +950,7 @@ let greeted = false;
 let estado = 'inicio';              // inicio | esperando_nombre | esperando_telefono
 let leadNombre = '';
 let leadTelefono = '';
+let leadInteres = '';               // producto detectado por el motor (se envia como "equipo")
 
 function toggleChat(){
   const open = chat.classList.toggle('open');
@@ -980,12 +981,20 @@ function showTyping(){
 }
 function hideTyping(){ const t = document.getElementById('typing'); if (t) t.remove(); }
 
-// Abre WhatsApp con el lead ya recogido (sin backend, 100% cliente)
-function enviarWhatsApp(nombre, telefono){
-  const mensaje = encodeURIComponent(
-    `Hola, soy ${nombre} (teléfono: ${telefono}). Me gustaría recibir información comercial de GALNAC.`
-  );
-  window.open(`https://wa.me/${WHATSAPP}?text=${mensaje}`, '_blank');
+// Envia el lead al equipo via Edge Function (galnac-notify).
+// La CALLMEBOT_APIKEY se mantiene server-side: ningun numero de notificacion en el cliente.
+function enviarLeadGalnac(){
+  fetch(SUPABASE_URL + '/functions/v1/galnac-notify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      nombre: leadNombre,
+      telefono: leadTelefono,
+      equipo: leadInteres,
+      marca: '',
+      uso: ''
+    })
+  }).catch(function(){ /* silencioso — no exponer errores al usuario */ });
 }
 
 // Motor conversacional local: decide la respuesta del bot según el estado
@@ -1003,8 +1012,8 @@ function procesarMensaje(texto){
   if (estado === 'esperando_telefono') {
     leadTelefono = texto.trim();
     estado = 'inicio';
-    enviarWhatsApp(leadNombre, leadTelefono);
-    return `Perfecto, ${leadNombre}. Le abro WhatsApp para hablar con nuestro equipo ahora mismo. Si no se abre, escríbanos al +34 643 199 580.`;
+    enviarLeadGalnac();
+    return `Perfecto, ${leadNombre}. He trasladado sus datos al Departamento Comercial; le contactarán en un plazo de 24 horas laborables. Gracias por su interés en GALNAC.`;
   }
 
   // Intención de presupuesto / contacto → pedir nombre
@@ -1015,26 +1024,31 @@ function procesarMensaje(texto){
 
   // Nitrógeno
   if (t.includes('nitrógeno') || t.includes('nitrogeno') || t.includes('n2')) {
+    leadInteres = 'Nitrógeno PSA';
     return 'Nuestros generadores de nitrógeno PSA producen N2 con una pureza de hasta 99,995%, eliminando el oxígeno en procesos como el envasado de alimentos o las bodegas de vino. ¿Quiere que el Departamento Comercial le prepare una propuesta?';
   }
 
   // Compresores
   if (t.includes('compresor') || t.includes('glc')) {
+    leadInteres = 'Compresores GLC';
     return 'Fabricamos compresores de tornillo GLC de marca propia, desde 5,5 hasta 160 kW, para taller, industria y bodegas, con servicio técnico propio. ¿Desea un presupuesto?';
   }
 
   // Martillos hidráulicos
   if (t.includes('martillo') || t.includes('doofor')) {
+    leadInteres = 'Martillos Doofor';
     return 'Somos distribuidor oficial de martillos hidráulicos Doofor para excavadora (minería, canteras y obra pública). ¿Quiere información comercial?';
   }
 
   // Perforación
   if (t.includes('perforaci') || t.includes('epiroc') || t.includes('cantera')) {
+    leadInteres = 'Perforación Epiroc';
     return 'Distribuimos equipos de perforación Epiroc SpeedROC para canteras de granito, mármol y caliza. ¿Le preparamos una propuesta?';
   }
 
   // Reparación / servicio técnico
   if (t.includes('repar') || t.includes('avería') || t.includes('averia') || t.includes('servicio') || t.includes('mantenim') || t.includes('segunda mano')) {
+    leadInteres = 'Reparación / servicio técnico';
     return 'Reparamos y revisamos compresores de cualquier marca, con diagnóstico técnico gratuito y garantía. También disponemos de compresores de segunda mano revisados. ¿Quiere que le contacte el Departamento Comercial?';
   }
 
