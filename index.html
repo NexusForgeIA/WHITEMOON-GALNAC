@@ -937,7 +937,15 @@ window.addEventListener('DOMContentLoaded', function(){
 });
 
 /* ============ CHATBOT ENGINE — 100% local (sin backend) ============ */
-const WHATSAPP = '34643199580';
+// El lead cerrado (nombre + telefono) se persiste en Supabase (leads_web) y se
+// avisa al equipo por Telegram (Edge Function galnac-notify). La publishable
+// key no es secreta (RLS: solo INSERT); el token de Telegram vive en los
+// Secrets de la Edge Function, nunca en el cliente.
+const SUPABASE_URL = 'https://mlaqtniujnvfxcvcourm.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_6no6BuOgiA_2nonTJntAuQ_DTqEgrcV';
+const NOTIFY_FN    = SUPABASE_URL + '/functions/v1/galnac-notify';
+const SECTOR       = 'galnac';
+const ORIGEN       = 'demo-galnac';
 
 const chat = document.getElementById('chat');
 const fab = document.getElementById('fab');
@@ -950,6 +958,8 @@ let greeted = false;
 let estado = 'inicio';              // inicio | esperando_nombre | esperando_telefono
 let leadNombre = '';
 let leadTelefono = '';
+let leadInteres = '';               // producto detectado por el motor
+let leadConsultas = [];             // lo que ha preguntado el usuario (servicio / zona)
 
 function toggleChat(){
   const open = chat.classList.toggle('open');
@@ -980,17 +990,71 @@ function showTyping(){
 }
 function hideTyping(){ const t = document.getElementById('typing'); if (t) t.remove(); }
 
-// Abre WhatsApp con el lead ya recogido (sin backend, 100% cliente)
-function enviarWhatsApp(nombre, telefono){
-  const mensaje = encodeURIComponent(
-    `Hola, soy ${nombre} (teléfono: ${telefono}). Me gustaría recibir información comercial de GALNAC.`
-  );
-  window.open(`https://wa.me/${WHATSAPP}?text=${mensaje}`, '_blank');
+// INSERT en leads_web. Supabase devuelve 503 transitorios de forma esporadica:
+// sin reintento ese lead se pierde, asi que se reintenta UNA vez.
+function insertLead(lead, reintento){
+  fetch(SUPABASE_URL + '/rest/v1/leads_web', {
+    method: 'POST',
+    keepalive: true,
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(lead)
+  })
+  .then(function(r){ if (!r.ok && !reintento) setTimeout(function(){ insertLead(lead, 1); }, 800); })
+  .catch(function(){ if (!reintento) setTimeout(function(){ insertLead(lead, 1); }, 800); });
+}
+
+// Aviso a Telegram via Edge Function (token server-side, nunca en el cliente).
+// sendBeacon con Blob 'application/json' dispara preflight CORS y Chrome
+// descarta el POST devolviendo true igual: hay que usar 'text/plain' (simple
+// request). El body sigue siendo JSON y la funcion lo parsea igual.
+function notificarTelegram(lead){
+  var payload = JSON.stringify(lead);
+  var sent = false;
+  try {
+    if (navigator.sendBeacon) {
+      sent = navigator.sendBeacon(NOTIFY_FN, new Blob([payload], { type: 'text/plain;charset=UTF-8' }));
+    }
+  } catch(e){}
+  if (!sent) {
+    fetch(NOTIFY_FN, {
+      method: 'POST',
+      keepalive: true,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY
+      },
+      body: payload
+    }).catch(function(){ /* silencioso — no exponer errores al usuario */ });
+  }
+}
+
+// Cierre del lead: persistencia + aviso EN PARALELO (no encadenados).
+function enviarLeadGalnac(){
+  var lead = {
+    nombre: leadNombre,
+    telefono: leadTelefono,
+    sector: SECTOR,
+    interes: leadInteres || 'Consulta general',
+    mensaje: leadConsultas.join(' · '),
+    origen: ORIGEN
+  };
+  insertLead(lead, 0);
+  notificarTelegram(lead);
 }
 
 // Motor conversacional local: decide la respuesta del bot según el estado
 function procesarMensaje(texto){
   const t = texto.toLowerCase().trim();
+
+  // Lo que pregunta el usuario (servicio, zona…) se guarda como contexto del
+  // lead; nombre y telefono se capturan aparte.
+  if (estado === 'inicio' && leadConsultas.length < 6) leadConsultas.push(texto.trim());
 
   // Captura de nombre
   if (estado === 'esperando_nombre') {
@@ -999,12 +1063,12 @@ function procesarMensaje(texto){
     return `Gracias, ${leadNombre}. ¿Me indica un teléfono de contacto para que el Departamento Comercial le llame?`;
   }
 
-  // Captura de teléfono → abrir WhatsApp
+  // Captura de teléfono → cierre del lead (Supabase + Telegram)
   if (estado === 'esperando_telefono') {
     leadTelefono = texto.trim();
     estado = 'inicio';
-    enviarWhatsApp(leadNombre, leadTelefono);
-    return `Perfecto, ${leadNombre}. Le abro WhatsApp para hablar con nuestro equipo ahora mismo. Si no se abre, escríbanos al +34 643 199 580.`;
+    enviarLeadGalnac();
+    return `Perfecto, ${leadNombre}. He trasladado sus datos al Departamento Comercial; le contactarán en un plazo de 24 horas laborables. Gracias por su interés en GALNAC.`;
   }
 
   // Intención de presupuesto / contacto → pedir nombre
@@ -1015,26 +1079,31 @@ function procesarMensaje(texto){
 
   // Nitrógeno
   if (t.includes('nitrógeno') || t.includes('nitrogeno') || t.includes('n2')) {
+    leadInteres = 'Nitrógeno PSA';
     return 'Nuestros generadores de nitrógeno PSA producen N2 con una pureza de hasta 99,995%, eliminando el oxígeno en procesos como el envasado de alimentos o las bodegas de vino. ¿Quiere que el Departamento Comercial le prepare una propuesta?';
   }
 
   // Compresores
   if (t.includes('compresor') || t.includes('glc')) {
+    leadInteres = 'Compresores GLC';
     return 'Fabricamos compresores de tornillo GLC de marca propia, desde 5,5 hasta 160 kW, para taller, industria y bodegas, con servicio técnico propio. ¿Desea un presupuesto?';
   }
 
   // Martillos hidráulicos
   if (t.includes('martillo') || t.includes('doofor')) {
+    leadInteres = 'Martillos Doofor';
     return 'Somos distribuidor oficial de martillos hidráulicos Doofor para excavadora (minería, canteras y obra pública). ¿Quiere información comercial?';
   }
 
   // Perforación
   if (t.includes('perforaci') || t.includes('epiroc') || t.includes('cantera')) {
+    leadInteres = 'Perforación Epiroc';
     return 'Distribuimos equipos de perforación Epiroc SpeedROC para canteras de granito, mármol y caliza. ¿Le preparamos una propuesta?';
   }
 
   // Reparación / servicio técnico
   if (t.includes('repar') || t.includes('avería') || t.includes('averia') || t.includes('servicio') || t.includes('mantenim') || t.includes('segunda mano')) {
+    leadInteres = 'Reparación / servicio técnico';
     return 'Reparamos y revisamos compresores de cualquier marca, con diagnóstico técnico gratuito y garantía. También disponemos de compresores de segunda mano revisados. ¿Quiere que le contacte el Departamento Comercial?';
   }
 
